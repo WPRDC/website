@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_navbar_navbar_logos",
+  "info": {
+    "displayName": "navbarLogo"
+  },
+  "options": {},
+  "attributes": {
+    "lightImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "darkImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "homeURL": {
+      "type": "string"
+    },
+    "altText": {
+      "type": "string"
+    }
+  }
+}

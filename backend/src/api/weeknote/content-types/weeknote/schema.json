@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weeknotes",
+  "info": {
+    "singularName": "weeknote",
+    "pluralName": "weeknotes",
+    "displayName": "Weeknote",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "article": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "light"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
+    }
+  }
+}

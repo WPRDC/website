@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_content_body_texts",
+  "info": {
+    "displayName": "Text Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    }
+  }
+}
