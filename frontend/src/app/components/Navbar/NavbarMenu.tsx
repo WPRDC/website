@@ -2,14 +2,15 @@
 
 import NavLink from '@/app/components/Navbar/NavLink';
 import React, { useState } from 'react';
-import { IElementsLink } from '@/app/types';
+import { IElementsLink, INavMenuItem } from '@/app/types';
 import classNames from 'classnames';
+import { NavbarMenuItem } from '@/app/components/Navbar/NavbarMenuItem';
 
 export interface NavbarMenuProps {
-  links: Array<IElementsLink>;
+  menuItems: INavMenuItem[];
 }
 
-export default function NavbarMenu({ links }: NavbarMenuProps) {
+export default function NavbarMenu({ menuItems }: NavbarMenuProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className="ml-4 md:ml-24">
@@ -41,8 +42,8 @@ export default function NavbarMenu({ links }: NavbarMenuProps) {
             isOpen,
         })}
       >
-        {links.map((link) => (
-          <NavLink key={link.id} {...link} />
+        {menuItems.map((menuItem) => (
+          <NavbarMenuItem key={menuItem.id} {...menuItem.attributes} />
         ))}
       </ul>
     </div>

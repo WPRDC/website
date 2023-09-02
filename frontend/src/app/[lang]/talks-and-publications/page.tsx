@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
-import { getProjects, getTools } from '@/app/lib/data-fetchers';
+import { getArtifacts, getTools } from '@/app/lib/data-fetchers';
 import React from 'react';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
-import Image from 'next/image';
 import { Card } from '@/app/components/Card';
 
 type Props = {
@@ -28,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? '';
 
 export default async function ToolListingRoute({ params }: Props) {
-  const { data: projects } = await getProjects();
+  const { data: artifacts } = await getArtifacts();
 
   const path = [
     {
@@ -38,15 +37,15 @@ export default async function ToolListingRoute({ params }: Props) {
     },
     {
       id: '2',
-      label: 'Projects',
-      href: '/projects',
+      label: 'Talks and Publications',
+      href: '#',
     },
   ];
 
   return (
-    <div className="container items-start px-4 md:mx-auto lg:max-w-5xl">
+    <div className="container px-4 md:mx-auto lg:max-w-5xl">
       <Breadcrumbs path={path} />
-      <Title>Projects</Title>
+      <Title>Talks and Publications</Title>
       <ParsedHTML>
         Ahoy, swashbuckling doubloons, grace, booty, and strength. The breeze
         falls death like an evil pirate. Winds wave with malaria! corsairs
@@ -54,13 +53,13 @@ export default async function ToolListingRoute({ params }: Props) {
         lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
         is an addled mate.
       </ParsedHTML>
-      <ul className="my-8 grid grid-cols-3">
-        {projects.map(({ attributes: project }) => (
+      <ul className="my-8 grid grid-cols-3 items-stretch gap-6">
+        {artifacts.map(({ attributes: artifact }) => (
           <Card
-            href={`/projects/${project.slug}`}
-            title={project.title ?? ''}
-            subtitle={project.subtitle}
-            thumbnailURL={`${STRAPI_URL}${project.thumbnail?.data?.attributes.url}`}
+            href={`/talks-and-publications/${artifact.slug}`}
+            title={artifact.title ?? ''}
+            subtitle={artifact.subtitle}
+            thumbnailURL={`${STRAPI_URL}${artifact.primaryImage?.data?.attributes.url}`}
           />
         ))}
       </ul>

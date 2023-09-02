@@ -1,17 +1,22 @@
+import { IMedia } from "../builtins/Media";
 import { IElementsLink } from "./elements/Link";
 import { IAdminuser } from "../admin/User";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
 import { RequiredBy } from "../builtins/RequiredBy";
-export interface IPage<Populate extends string | never = never> {
+export interface IArtifact<Populate extends string | never = never> {
   id: number;
   attributes: RequiredBy<
     {
       title: string | null;
-      slug: string | null;
       subtitle: string | null;
-      body: string | null;
-      relatedPages?: IElementsLink[];
+      primaryImage?: { data: IMedia | null };
+      images?: { data: IMedia[] };
+      slug: string | null;
+      publicationDate: string | null;
+      links?: IElementsLink[];
+      category: "presentation" | "report" | null;
+      description: string | null;
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

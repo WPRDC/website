@@ -1,17 +1,17 @@
 import { IElementsLink } from "./elements/Link";
+import { INavbarSubMenuItem } from "./navbar/SubMenuItem";
 import { IAdminuser } from "../admin/User";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
 import { RequiredBy } from "../builtins/RequiredBy";
-export interface IPage<Populate extends string | never = never> {
+export interface INavMenuItem<Populate extends string | never = never> {
   id: number;
   attributes: RequiredBy<
     {
-      title: string | null;
-      slug: string | null;
-      subtitle: string | null;
-      body: string | null;
-      relatedPages?: IElementsLink[];
+      primaryLink?: IElementsLink | null;
+      subMenu?: INavbarSubMenuItem<ExtractNested<Populate, "subMenu">>[];
+      defaultDescription: string | null;
+      order: number | null;
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

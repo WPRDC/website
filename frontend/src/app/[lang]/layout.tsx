@@ -6,14 +6,13 @@ import { i18n } from '@/app/lib/i18n-config';
 import Footer from '@/app/components/Footer/footer';
 import Navbar from '@/app/components/Navbar';
 import { FALLBACK_SEO } from '@/app/lib/constants';
-import { getGlobal, requestData } from '@/app/lib/data-fetchers';
-
-import localFont from 'next/font/local';
+import { getGlobal, getMainMenu } from '@/app/lib/data-fetchers';
 import { jetbrainsMono, publicSans } from '@/app/[lang]/fonts';
 
 /** Special Next.js function for assigning metadata to pages under this layout */
 export async function generateMetadata(): Promise<Metadata> {
   const globalResponse = await getGlobal();
+  const menuItems = await getMainMenu();
   if (!globalResponse.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = globalResponse.data.attributes;
@@ -39,6 +38,8 @@ export default async function RootLayout({
   };
 }) {
   const global = await getGlobal();
+  const menuItems = await getMainMenu();
+
   if (!global.data) return null;
 
   const {
@@ -70,7 +71,7 @@ export default async function RootLayout({
         <Navbar
           logoURL={navbarLogoURL}
           darkLogoURL={navbarDarkLogoURL}
-          links={navbarLinks}
+          menuItems={menuItems.data}
         />
         <main className="flex-grow pt-8">{children}</main>
         <Footer

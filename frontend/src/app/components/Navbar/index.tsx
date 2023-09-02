@@ -1,15 +1,19 @@
 import React from 'react';
 import Logo from './Logo';
-import { IElementsLink } from '@/app/types';
+import { IElementsLink, INavMenuItem } from '@/app/types';
 import NavbarMenu from '@/app/components/Navbar/NavbarMenu';
 
 export interface NavbarProps {
-  links: Array<IElementsLink>;
   logoURL: string | null;
   darkLogoURL: string | null;
+  menuItems: INavMenuItem[];
 }
 
-export default function Index({ links, logoURL, darkLogoURL }: NavbarProps) {
+export default function Index({
+  menuItems,
+  logoURL,
+  darkLogoURL,
+}: NavbarProps) {
   return (
     <div className="border-b-2 border-black dark:border-slate-800 dark:bg-black dark:text-gray-100">
       <div className="container mx-auto flex w-full items-center p-2">
@@ -17,7 +21,7 @@ export default function Index({ links, logoURL, darkLogoURL }: NavbarProps) {
           <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
         </div>
 
-        <NavbarMenu links={links} />
+        <NavbarMenu menuItems={menuItems} />
       </div>
     </div>
   );

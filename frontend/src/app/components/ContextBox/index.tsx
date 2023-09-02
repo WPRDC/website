@@ -1,12 +1,10 @@
-import { HeadingDetails, slugifyHeading } from '@/app/lib/markdown-utils';
-import classNames from 'classnames';
-import { ITag } from '@/app/types';
+import { IElementsLink, ITag } from '@/app/types';
 import A from '@/app/components/A';
 import { Tags } from '../Tags';
 import React from 'react';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { tocReplacer } from '@/app/components/ParsedHTML/lib';
-import { FaBook, FaGithub } from 'react-icons/fa6';
+import { FaBook, FaGithub, FaLink } from 'react-icons/fa6';
 
 export interface ContextBoxProps {
   title?: string;
@@ -18,47 +16,57 @@ export interface ContextBoxProps {
   docLinks?: (string | null)[];
   /** links to relevant repos */
   githubLinks?: (string | null)[];
+  /** other useful links */
+  relatedLinks?: (IElementsLink | null)[];
+
+  /** title for link section */
+  relatedLinksTitle?: string;
 }
 
-type LinkCategory = 'doc' | 'github';
+type LinkCategory = 'doc' | 'github' | 'page';
 export function ContextBox({
   contents,
   tags,
   title,
   docLinks = [],
   githubLinks = [],
+  relatedLinks = [],
+  relatedLinksTitle,
 }: ContextBoxProps) {
-  const toc = <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>;
-
   // create one list of links with their type for logos
-  const links: [string, LinkCategory][] = [
+  const links: [string | IElementsLink, LinkCategory][] = [
     ...githubLinks?.map(
       (link) => [link ?? '', 'github'] as [string, LinkCategory],
     ),
     ...docLinks?.map((link) => [link ?? '', 'doc'] as [string, LinkCategory]),
+    ...relatedLinks?.map(
+      (link) => [link ?? '', 'page'] as [IElementsLink, LinkCategory],
+    ),
   ];
 
   return (
     <div className="border-text dark:border-textDark3wsz fixed mt-16 w-72 border p-2">
-      {title !== '' && (
-        <div className="mb-2 text-xs font-bold uppercase">
-          {title ?? 'On this page'}
-        </div>
-      )}
-      {!!contents && (
-        <ol className="px-1.5 text-sm">
-          <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>
-        </ol>
+      {!!contents && !!contents.match('<h') && (
+        <>
+          <div className="mb-2 text-xs font-bold uppercase">
+            {'On this page'}
+          </div>
+          <ol className="px-1.5 text-sm">
+            <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>
+          </ol>
+        </>
       )}
 
       {!!links && !!links.length && (
         <>
-          <div className="text-sm uppercase">More Links</div>
+          <div className="mb-1 text-sm uppercase">
+            {relatedLinksTitle ?? 'More Links'}
+          </div>
           <ul>
             {!!links &&
-              links.map(([url, category]) => (
+              links.map(([link, category]) => (
                 <li
-                  key={url}
+                  key={typeof link === 'string' ? link : link.url}
                   className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
                 >
                   {category === 'doc' && (
@@ -67,16 +75,23 @@ export function ContextBox({
                   {category === 'github' && (
                     <FaGithub className="mr-1 inline-block" />
                   )}
-                  <A className="" href={url ?? ''} external>
-                    {url}
-                  </A>
+                  {category === 'page' && (
+                    <FaLink className="mr-1 inline-block" />
+                  )}
+                  {typeof link === 'string' ? (
+                    <A className="" href={link ?? ''} external>
+                      {link}
+                    </A>
+                  ) : (
+                    <A href={link.url ?? ''} external={!!link.newTab}>
+                      {link.label}
+                    </A>
+                  )}
                 </li>
               ))}
           </ul>
         </>
       )}
-
-      {!!githubLinks && !!githubLinks.length && <ul></ul>}
 
       {!!tags && !!tags.length && (
         <div className="mt-5">

@@ -55,8 +55,6 @@ export default async function BlogRoute({ params }: Props) {
     },
   ];
 
-  console.log(author);
-
   return (
     <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
       <article className="w-3/4">

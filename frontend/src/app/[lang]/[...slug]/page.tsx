@@ -35,19 +35,24 @@ export default async function PageRoute({ params }: Props) {
     '/pages',
     params.slug,
     params.lang,
+    '*',
   );
-  const { title, subtitle, body, updatedAt, publishedAt } =
+  const { title, subtitle, body, updatedAt, publishedAt, relatedPages } =
     page.data[0].attributes;
 
   return (
-    <div className="container flex items-start space-x-12 px-4 pt-12 md:mx-auto lg:max-w-7xl">
+    <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
       <article className="w-3/4">
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
         <ParsedHTML>{body}</ParsedHTML>
       </article>
       <div className="hidden w-1/4 md:block">
-        <ContextBox contents={body} />
+        <ContextBox
+          contents={body}
+          relatedLinks={relatedPages}
+          relatedLinksTitle="Links"
+        />
       </div>
     </div>
   );

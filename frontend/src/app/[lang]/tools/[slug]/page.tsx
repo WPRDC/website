@@ -2,12 +2,11 @@ import { Metadata } from 'next';
 import { getContentBySlug } from '@/app/lib/data-fetchers';
 import React from 'react';
 import { BreadcrumbItem, Breadcrumbs } from '@/app/components/Breadcrumbs';
-import { IBlog, ITool } from '@/app/types';
+import { IProject, ITool } from '@/app/types';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
 import { Subtitle } from '@/app/components/Subtitle';
 import { ContextBox } from '@/app/components/ContextBox';
-import Image from 'next/image';
 import { STRAPI_URL } from '@/app/lib/constants';
 import A from '@/app/components/A';
 import { PopupImage } from '@/app/components/PopupImage';
@@ -26,16 +25,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogRoute({ params }: Props) {
   const { category, slug, lang } = params;
-  const { data: tools } = await getContentBySlug<ITool>(
-    '/tools',
+  const { data: projects } = await getContentBySlug<IProject>(
+    '/projects',
     slug,
     lang,
     '*',
   );
 
   // todo: handle 404 if not posts
-  const { title, subtitle, description, url, docURL, githubURL, screenshots } =
-    tools[0].attributes;
+  const { title, subtitle, description, url, githubURL, screenshots } =
+    projects[0].attributes;
   const path: BreadcrumbItem[] = [
     {
       id: '1',
@@ -44,17 +43,15 @@ export default async function BlogRoute({ params }: Props) {
     },
     {
       id: '2',
-      label: 'Tools',
-      href: '/tools',
+      label: 'Projects',
+      href: '/projects',
     },
     {
       id: '3',
       label: title ?? '',
-      href: '/tools',
+      href: '#',
     },
   ];
-
-  console.log(screenshots);
 
   return (
     <div className="container flex items-start space-x-12 px-4 pt-12 md:mx-auto lg:max-w-7xl">
@@ -94,7 +91,7 @@ export default async function BlogRoute({ params }: Props) {
         )}
       </div>
       <div className="mt-12 hidden w-1/3 md:block">
-        <ContextBox title="" docLinks={[docURL]} githubLinks={[githubURL]} />
+        <ContextBox title="" githubLinks={[githubURL]} />
       </div>
     </div>
   );

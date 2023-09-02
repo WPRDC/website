@@ -1,9 +1,12 @@
 import { fetchAPI } from '@/app/lib/fetch-api';
 import {
+  IArtifact,
   IBlog,
   IGlobal,
   IHome,
+  INavMenuItem,
   IPage,
+  IProject,
   ITool,
   IWeeknote,
   StrapiResponse,
@@ -153,6 +156,66 @@ export async function getTools(
 
   return requestData<ITool<(typeof toolsFields)[number]>[]>(
     '/tools',
+    queryParams,
+  );
+}
+
+const artifactFields: string[] | string = '*';
+
+export async function getArtifacts(
+  slug?: string,
+): Promise<StrapiResponse<IArtifact<(typeof artifactFields)[number]>[]>> {
+  const filters = slug
+    ? {
+        slug: slug,
+      }
+    : undefined;
+
+  const queryParams = {
+    sort: { order: 'asc' },
+    filters,
+    populate: artifactFields,
+  };
+
+  return requestData<IArtifact<(typeof artifactFields)[number]>[]>(
+    '/artifacts',
+    queryParams,
+  );
+}
+
+const projectFields: string[] | string = '*';
+
+export async function getProjects(
+  slug?: string,
+): Promise<StrapiResponse<IProject[]>> {
+  const filters = slug
+    ? {
+        slug: slug,
+      }
+    : undefined;
+
+  const queryParams = {
+    sort: { order: 'asc' },
+    filters,
+    populate: projectFields,
+  };
+
+  return requestData<IProject<(typeof projectFields)[number]>[]>(
+    '/projects',
+    queryParams,
+  );
+}
+
+const mainMenuFields: string[] | string = '*';
+
+export async function getMainMenu(): Promise<StrapiResponse<INavMenuItem[]>> {
+  const queryParams = {
+    sort: { order: 'asc' },
+    populate: mainMenuFields,
+  };
+
+  return requestData<INavMenuItem<(typeof mainMenuFields)[number]>[]>(
+    '/nav-menu-items',
     queryParams,
   );
 }

@@ -1,4 +1,5 @@
 import { IBlog } from "./Blog";
+import { IMedia } from "../builtins/Media";
 import { IAdminuser } from "../admin/User";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
@@ -12,6 +13,7 @@ export interface IAuthor<Populate extends string | never = never> {
       blogs?: { data: IBlog<ExtractNested<Populate, "blogs">>[] };
       slug: string | null;
       bio: string | null;
+      headshot?: { data: IMedia | null };
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

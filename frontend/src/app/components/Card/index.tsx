@@ -18,10 +18,10 @@ export function Card({
   thumbnailAltText,
 }: CardProps) {
   return (
-    <li>
+    <li className="flex h-full flex-col">
       <Link
         href={href}
-        className="border-textSecondary dark:border-textSecondaryDark hover:border-primary flex flex-col-reverse border-2 shadow-lg hover:shadow-2xl active:shadow"
+        className="border-textSecondary dark:border-textSecondaryDark hover:border-primary flex h-full flex-col-reverse border-2 shadow-lg hover:shadow-2xl active:shadow"
       >
         <div className=" flex-grow p-4">
           <div className="mb-3 text-2xl font-bold">{title}</div>

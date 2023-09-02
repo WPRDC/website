@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "artifacts",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Project",
+    "singularName": "artifact",
+    "pluralName": "artifacts",
+    "displayName": "Artifact",
     "description": ""
   },
   "options": {
@@ -18,13 +18,7 @@
     "subtitle": {
       "type": "string"
     },
-    "url": {
-      "type": "string"
-    },
-    "githubURL": {
-      "type": "string"
-    },
-    "thumbnail": {
+    "primaryImage": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -35,7 +29,7 @@
         "audios"
       ]
     },
-    "screenshots": {
+    "images": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -46,17 +40,24 @@
         "audios"
       ]
     },
-    "order": {
-      "type": "integer"
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::tag.tag"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "publicationDate": {
+      "type": "date"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "presentation",
+        "report"
+      ]
     },
     "description": {
       "type": "customField",

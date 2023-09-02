@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nav_menu_items",
+  "info": {
+    "singularName": "nav-menu-item",
+    "pluralName": "nav-menu-items",
+    "displayName": "NavMenuItem",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "primaryLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link"
+    },
+    "subMenu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navbar.sub-menu-item"
+    },
+    "defaultDescription": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "light"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}
