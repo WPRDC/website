@@ -54,7 +54,7 @@ export default async function ProjectRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container flex items-start space-x-12 px-4 pt-12 md:mx-auto lg:max-w-7xl">
+    <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
       <div className="w-2/3">
         <Breadcrumbs path={path} />
         <Title>{title}</Title>
