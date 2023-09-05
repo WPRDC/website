@@ -3,9 +3,12 @@
 import { INavMenuItem } from '@/app/types';
 import A from '@/app/components/A';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import { Modal } from '@/app/components/Modal';
-import { useState } from 'react';
-import { ParsedHTML } from '@/app/components/ParsedHTML';
+import React, { useRef, useState } from 'react';
+import { Popover } from '@/app/components/Popover';
+import { useOverlayTrigger } from 'react-aria';
+import Button from '@/app/components/Button';
+import { Dialog } from '@/app/components/Dialog';
+import Link from 'next/link';
 
 interface NavItem {
   title: string;
@@ -24,7 +27,14 @@ export function NavbarMenuItem({
 }: NavbarMenuDropdownProps) {
   const [hoveredItem, setHoveredItem] = useState<number>();
 
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const state = useOverlayTriggerState({});
+  let { triggerProps, overlayProps } = useOverlayTrigger(
+    { type: 'dialog' },
+    state,
+    triggerRef,
+  );
+
   const hasMenu = !!subMenu && !!subMenu.length;
 
   if (!hasMenu) {
@@ -39,35 +49,18 @@ export function NavbarMenuItem({
 
   return (
     <li>
-      <button onClick={state.open} className="cursor-pointer">
+      <Button
+        {...triggerProps}
+        buttonRef={triggerRef}
+        className="cursor-pointer"
+      >
         {primaryLink?.label}
-      </button>
-      <Modal state={state}>
-        <div>
-          <div>
-            {!!subMenu && !!subMenu.length && (
-              <ul>
-                {subMenu.map((menuItem) => (
-                  <li
-                    key={menuItem.id}
-                    onMouseEnter={() => setHoveredItem(menuItem.id)}
-                    onMouseLeave={() => setHoveredItem(undefined)}
-                  >
-                    <A href={menuItem.link?.url ?? '#'}>
-                      <div>{menuItem.link?.label}</div>
-                      {!!menuItem.deatailLine && (
-                        <div>{menuItem.deatailLine}</div>
-                      )}
-                      {console.log('', subMenu) ?? ''}
-                    </A>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <div></div>
-        </div>
-      </Modal>
+      </Button>
+      {state.isOpen && (
+        <Popover state={state} triggerRef={triggerRef} placement="bottom">
+          <div className="bg-white dark:bg-black"></div>
+        </Popover>
+      )}
     </li>
   );
 }

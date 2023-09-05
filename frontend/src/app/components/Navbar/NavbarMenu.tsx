@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { IElementsLink, INavMenuItem } from '@/app/types';
 import classNames from 'classnames';
 import { NavbarMenuItem } from '@/app/components/Navbar/NavbarMenuItem';
+import { SSRProvider } from 'react-aria';
 
 export interface NavbarMenuProps {
   menuItems: INavMenuItem[];

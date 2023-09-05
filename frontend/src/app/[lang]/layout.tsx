@@ -12,7 +12,6 @@ import { jetbrainsMono, publicSans } from '@/app/[lang]/fonts';
 /** Special Next.js function for assigning metadata to pages under this layout */
 export async function generateMetadata(): Promise<Metadata> {
   const globalResponse = await getGlobal();
-  const menuItems = await getMainMenu();
   if (!globalResponse.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = globalResponse.data.attributes;

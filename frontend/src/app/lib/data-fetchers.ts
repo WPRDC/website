@@ -206,7 +206,12 @@ export async function getProjects(
   );
 }
 
-const mainMenuFields: string[] | string = '*';
+const mainMenuFields: string[] | string = [
+  'primaryLink',
+  'defaultDescription',
+  'subMenu.link',
+  'subMenu.subItems',
+];
 
 export async function getMainMenu(): Promise<StrapiResponse<INavMenuItem[]>> {
   const queryParams = {
