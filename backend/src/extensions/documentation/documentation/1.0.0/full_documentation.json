@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-09-02T14:05:07.756Z"
+    "x-generation-date": "2023-09-05T15:22:15.864Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1078,6 +1078,15 @@
           },
           "newTab": {
             "type": "boolean"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "repo",
+              "documentation",
+              "dataset",
+              "team-member"
+            ]
           }
         }
       },
@@ -7355,6 +7364,15 @@
               },
               "newTab": {
                 "type": "boolean"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "repo",
+                  "documentation",
+                  "dataset",
+                  "team-member"
+                ]
               }
             }
           },
@@ -8001,6 +8019,15 @@
                 },
                 "newTab": {
                   "type": "boolean"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "repo",
+                    "documentation",
+                    "dataset",
+                    "team-member"
+                  ]
                 }
               }
             }
