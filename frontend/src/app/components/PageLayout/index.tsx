@@ -17,8 +17,8 @@ export function PageLayout({
     <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
       <Content
         className={classNames(
-          'xl:w-3/4',
-          !!contextBoxProps ? 'w-3/4' : 'w-full',
+          '',
+          !!contextBoxProps ? 'w-2/3 xl:w-3/4' : 'w-full',
         )}
       >
         {children}
