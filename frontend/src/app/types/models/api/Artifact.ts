@@ -14,9 +14,10 @@ export interface IArtifact<Populate extends string | never = never> {
       images?: { data: IMedia[] };
       slug: string | null;
       publicationDate: string | null;
-      links?: IElementsLink[];
+      relatedPages?: IElementsLink[];
       category: "presentation" | "report" | null;
       description: string | null;
+      url: string | null;
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

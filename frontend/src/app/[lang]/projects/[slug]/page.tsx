@@ -10,6 +10,9 @@ import { ContextBox } from '@/app/components/ContextBox';
 import { STRAPI_URL } from '@/app/lib/constants';
 import A from '@/app/components/A';
 import { PopupImage } from '@/app/components/PopupImage';
+import { ScreenshotGrid } from '@/app/components/ScreenshotGrid';
+import { PageLayout } from '@/app/components/PageLayout';
+import { PrimaryLink } from '@/app/components/PrimaryLink';
 
 type Props = {
   params: {
@@ -33,7 +36,7 @@ export default async function ProjectRoute({ params }: Props) {
   );
 
   // todo: handle 404 if not posts
-  const { title, subtitle, description, url, docURL, githubURL, screenshots } =
+  const { title, subtitle, description, url, screenshots, relatedPages } =
     tools[0].attributes;
   const path: BreadcrumbItem[] = [
     {
@@ -54,45 +57,13 @@ export default async function ProjectRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
-      <div className="w-2/3">
-        <Breadcrumbs path={path} />
-        <Title>{title}</Title>
-        <Subtitle>{subtitle}</Subtitle>
-        <div className="mb-4 text-lg">
-          <A external href={url ?? ''}>
-            {url}
-          </A>
-        </div>
-        <ParsedHTML>{description}</ParsedHTML>
-        {!!screenshots && (
-          <>
-            <div className="mb-2 mt-8 text-lg ">Screenshots</div>
-
-            <ul className="inline-block">
-              {screenshots.data.map((screenshot) => (
-                <li
-                  key={screenshot.id}
-                  className="relative inline-block h-52 max-w-sm p-3"
-                >
-                  <PopupImage
-                    src={`${STRAPI_URL}${screenshot.attributes.url}`}
-                    width={800}
-                    height={200}
-                    alt={
-                      screenshot.attributes.alternativeText ??
-                      `${title} screenshot`
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
-      <div className="mt-12 hidden w-1/3 md:block">
-        <ContextBox title="" docLinks={[docURL]} githubLinks={[githubURL]} />
-      </div>
-    </div>
+    <PageLayout contextBoxProps={{ relatedPages: relatedPages }}>
+      <Breadcrumbs path={path} />
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+      <PrimaryLink url={url} />
+      <ParsedHTML>{description}</ParsedHTML>
+      <ScreenshotGrid screenshots={screenshots?.data} pageTitle={title} />
+    </PageLayout>
   );
 }

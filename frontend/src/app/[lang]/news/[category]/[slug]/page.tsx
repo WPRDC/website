@@ -8,6 +8,7 @@ import { Title } from '@/app/components/Title';
 import { Subtitle } from '@/app/components/Subtitle';
 import { ContextBox } from '@/app/components/ContextBox';
 import { Byline } from '@/app/components/Byline';
+import { PageLayout } from '@/app/components/PageLayout';
 
 type Props = {
   params: {
@@ -56,17 +57,15 @@ export default async function BlogRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
-      <article className="w-3/4">
-        <Breadcrumbs path={path} />
-        <Title>{title}</Title>
-        <Byline author={author?.data} timestamp={publishedAt} />
-        <Subtitle>{subtitle}</Subtitle>
-        <ParsedHTML>{article}</ParsedHTML>
-      </article>
-      <div className="relative hidden w-1/4 md:block">
-        <ContextBox contents={article} />
-      </div>
-    </div>
+    <PageLayout
+      contextBoxProps={{ contents: article }}
+      contentElement="article"
+    >
+      <Breadcrumbs path={path} />
+      <Title>{title}</Title>
+      <Byline author={author?.data} timestamp={publishedAt} />
+      <Subtitle>{subtitle}</Subtitle>
+      <ParsedHTML>{article}</ParsedHTML>
+    </PageLayout>
   );
 }

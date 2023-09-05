@@ -66,6 +66,9 @@
         "preset": "standard"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

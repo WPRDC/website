@@ -50,7 +50,7 @@ export default async function PageRoute({ params }: Props) {
       <div className="hidden w-1/4 md:block">
         <ContextBox
           contents={body}
-          relatedLinks={relatedPages}
+          relatedPages={relatedPages}
           relatedLinksTitle="Links"
         />
       </div>

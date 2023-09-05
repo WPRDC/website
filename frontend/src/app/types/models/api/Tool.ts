@@ -1,5 +1,6 @@
 import { IMedia } from "../builtins/Media";
 import { ITag } from "./Tag";
+import { IElementsLink } from "./elements/Link";
 import { IAdminuser } from "../admin/User";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
@@ -19,6 +20,7 @@ export interface ITool<Populate extends string | never = never> {
       docURL: string | null;
       screenshots?: { data: IMedia[] };
       githubURL: string | null;
+      relatedPages?: IElementsLink[];
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

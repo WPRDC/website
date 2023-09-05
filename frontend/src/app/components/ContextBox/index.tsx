@@ -4,7 +4,14 @@ import { Tags } from '../Tags';
 import React from 'react';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { tocReplacer } from '@/app/components/ParsedHTML/lib';
-import { FaBook, FaGithub, FaLink } from 'react-icons/fa6';
+import {
+  FaBook,
+  FaDatabase,
+  FaGithub,
+  FaLink,
+  FaPerson,
+} from 'react-icons/fa6';
+import { IconType } from 'react-icons';
 
 export interface ContextBoxProps {
   title?: string;
@@ -17,7 +24,7 @@ export interface ContextBoxProps {
   /** links to relevant repos */
   githubLinks?: (string | null)[];
   /** other useful links */
-  relatedLinks?: (IElementsLink | null)[];
+  relatedPages?: (IElementsLink | null)[];
 
   /** title for link section */
   relatedLinksTitle?: string;
@@ -30,19 +37,15 @@ export function ContextBox({
   title,
   docLinks = [],
   githubLinks = [],
-  relatedLinks = [],
+  relatedPages = [],
   relatedLinksTitle,
 }: ContextBoxProps) {
   // create one list of links with their type for logos
-  const links: [string | IElementsLink, LinkCategory][] = [
-    ...githubLinks?.map(
-      (link) => [link ?? '', 'github'] as [string, LinkCategory],
-    ),
-    ...docLinks?.map((link) => [link ?? '', 'doc'] as [string, LinkCategory]),
-    ...relatedLinks?.map(
-      (link) => [link ?? '', 'page'] as [IElementsLink, LinkCategory],
-    ),
-  ];
+
+  function notNull(l: IElementsLink | null): l is IElementsLink {
+    return l !== null;
+  }
+  const links: IElementsLink[] = relatedPages.filter(notNull);
 
   return (
     <div className="border-text dark:border-textDark3wsz fixed mt-16 w-72 border p-2">
@@ -64,29 +67,15 @@ export function ContextBox({
           </div>
           <ul>
             {!!links &&
-              links.map(([link, category]) => (
+              links.map((link) => (
                 <li
-                  key={typeof link === 'string' ? link : link.url}
+                  key={link.url}
                   className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
                 >
-                  {category === 'doc' && (
-                    <FaBook className="mr-1 inline-block" />
-                  )}
-                  {category === 'github' && (
-                    <FaGithub className="mr-1 inline-block" />
-                  )}
-                  {category === 'page' && (
-                    <FaLink className="mr-1 inline-block" />
-                  )}
-                  {typeof link === 'string' ? (
-                    <A className="" href={link ?? ''} external>
-                      {link}
-                    </A>
-                  ) : (
-                    <A href={link.url ?? ''} external={!!link.newTab}>
-                      {link.label}
-                    </A>
-                  )}
+                  <LinkIcon link={link} />
+                  <A href={link.url ?? ''} external={!!link.newTab}>
+                    {link.label}
+                  </A>
                 </li>
               ))}
           </ul>
@@ -101,4 +90,23 @@ export function ContextBox({
       )}
     </div>
   );
+}
+
+interface LinkIconProps {
+  link: IElementsLink;
+}
+function LinkIcon({ link }: LinkIconProps) {
+  const props = { className: 'mr-1 inline-block' };
+  switch (link.category) {
+    case 'documentation':
+      return <FaBook {...props} />;
+    case 'repo':
+      return <FaGithub {...props} />;
+    case 'dataset':
+      return <FaDatabase {...props} />;
+    case 'team-member':
+      return <FaPerson {...props} />;
+    default:
+      return <FaLink {...props} />;
+  }
 }

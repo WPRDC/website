@@ -1,5 +1,6 @@
 import { IMedia } from "../builtins/Media";
 import { ITag } from "./Tag";
+import { IElementsLink } from "./elements/Link";
 import { IAdminuser } from "../admin/User";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
@@ -18,6 +19,7 @@ export interface IProject<Populate extends string | never = never> {
       tags?: { data: ITag<ExtractNested<Populate, "tags">>[] };
       slug: string | null;
       description: string | null;
+      relatedPages?: IElementsLink[];
       createdAt: string;
       updatedAt: string;
       publishedAt: string;
