@@ -72,7 +72,7 @@ export default async function RootLayout({
           darkLogoURL={navbarDarkLogoURL}
           menuItems={menuItems.data}
         />
-        <main className="flex-grow pt-8">{children}</main>
+        <main className="mt-24 flex-grow pt-8">{children}</main>
         <Footer
           logoURL={footerLogoURL}
           darkLogoURL={footerDarkLogoURL}

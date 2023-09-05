@@ -52,9 +52,9 @@ export default function Index({
   }, []);
 
   return (
-    <div className="w-full dark:text-gray-100">
+    <div className="fixed top-0 w-full dark:text-gray-100">
       {/* Navbar */}
-      <div className="z-50 border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
+      <div className="z-50 w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
         <div className="container mx-auto flex w-full max-w-7xl items-center space-x-24">
           <div className="flex-grow lg:flex-grow-0">
             <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
@@ -95,7 +95,7 @@ export default function Index({
 
       {/* Menu Drawer */}
       {!!currentMenuItem && (
-        <div className="fixed z-50 w-full border-b-4 border-black bg-white dark:border-slate-800 dark:bg-black">
+        <div className="z-50 w-full border-b-4 border-black bg-white dark:border-slate-800 dark:bg-black">
           <div className="container static mx-auto flex min-h-full w-full max-w-4xl py-4">
             <div className="w-2/5">
               {!!currentMenuItem.attributes.subMenu && (
