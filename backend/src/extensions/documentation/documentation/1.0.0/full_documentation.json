@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-09-05T15:22:15.864Z"
+    "x-generation-date": "2023-09-05T16:34:57.587Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -133,7 +133,7 @@
                 "type": "string",
                 "format": "date"
               },
-              "links": {
+              "relatedPages": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ElementsLinkComponent"
@@ -978,7 +978,7 @@
             "type": "string",
             "format": "date"
           },
-          "links": {
+          "relatedPages": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ElementsLinkComponent"
@@ -8529,6 +8529,12 @@
               },
               "description": {
                 "type": "string"
+              },
+              "relatedPages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ElementsLinkComponent"
+                }
               }
             }
           }
@@ -9868,6 +9874,12 @@
           "description": {
             "type": "string"
           },
+          "relatedPages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ElementsLinkComponent"
+            }
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -11150,6 +11162,12 @@
               },
               "githubURL": {
                 "type": "string"
+              },
+              "relatedPages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ElementsLinkComponent"
+                }
               }
             }
           }
@@ -12491,6 +12509,12 @@
           },
           "githubURL": {
             "type": "string"
+          },
+          "relatedPages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ElementsLinkComponent"
+            }
           },
           "createdAt": {
             "type": "string",

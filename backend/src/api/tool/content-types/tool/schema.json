@@ -68,6 +68,11 @@
     },
     "githubURL": {
       "type": "string"
+    },
+    "relatedPages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link"
     }
   }
 }

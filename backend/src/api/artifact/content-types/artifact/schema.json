@@ -47,7 +47,7 @@
     "publicationDate": {
       "type": "date"
     },
-    "links": {
+    "relatedPages": {
       "type": "component",
       "repeatable": true,
       "component": "elements.link"

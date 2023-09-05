@@ -65,6 +65,11 @@
         "preset": "standard"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "relatedPages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link"
     }
   }
 }
