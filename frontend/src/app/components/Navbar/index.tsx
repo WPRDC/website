@@ -71,8 +71,11 @@ export default function Index({
           <nav className="hidden md:block">
             <ul>
               {menuItems.map((menuItem) => (
-                <li className="inline-block px-4">
-                  <button onClick={handleMenuClick(menuItem)}>
+                <li className="inline-block px-1">
+                  <button
+                    onClick={handleMenuClick(menuItem)}
+                    className="dark:hover:text-primary px-3 decoration-2 hover:font-black hover:underline"
+                  >
                     {menuItem.attributes.primaryLink?.label}
                   </button>
                 </li>

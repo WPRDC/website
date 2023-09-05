@@ -51,7 +51,7 @@ export default async function ToolListingRoute({ params }: Props) {
         falls death like an evil pirate. Winds wave with malaria! corsairs
         hobble with adventure. Salty, clear whales quirky hoist a fine, misty
         lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
-        is an addled mate.
+        is an addled mate.*
       </ParsedHTML>
       <ul className="my-8 grid grid-cols-3">
         {tools.map(({ attributes: tool }) => (

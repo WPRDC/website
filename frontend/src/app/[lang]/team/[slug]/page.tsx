@@ -3,6 +3,9 @@ import { getContentBySlug } from '@/app/lib/data-fetchers';
 import { IAuthor } from '@/app/types';
 import A from '@/app/components/A';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
+import { PageLayout } from '@/app/components/PageLayout';
+import { Title } from '@/app/components/Title';
+import { PrimaryLink } from '@/app/components/PrimaryLink';
 
 type Props = {
   params: {
@@ -37,14 +40,12 @@ export default async function PageRoute({ params }: Props) {
   const { name, email, bio } = author.data[0].attributes;
 
   return (
-    <div className="container flex items-start space-x-12 px-4 pt-12 md:mx-auto lg:max-w-5xl">
+    <PageLayout>
       <article className="">
-        <h1 className="mb-4 text-4xl font-bold">{name}</h1>
-        <div className="mb-4">
-          <A href={`mailto:${email}`}>{email}</A>
-        </div>
+        <Title>{name}</Title>
+        <PrimaryLink url={`mailto:${email}`} label={email} external={false} />
         <ParsedHTML>{bio ?? ''}</ParsedHTML>
       </article>
-    </div>
+    </PageLayout>
   );
 }

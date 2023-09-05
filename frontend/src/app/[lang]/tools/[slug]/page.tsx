@@ -10,6 +10,9 @@ import { ContextBox } from '@/app/components/ContextBox';
 import { STRAPI_URL } from '@/app/lib/constants';
 import A from '@/app/components/A';
 import { PopupImage } from '@/app/components/PopupImage';
+import { PageLayout } from '@/app/components/PageLayout';
+import { PrimaryLink } from '@/app/components/PrimaryLink';
+import { ScreenshotGrid } from '@/app/components/ScreenshotGrid';
 
 type Props = {
   params: {
@@ -54,45 +57,13 @@ export default async function BlogRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container flex items-start space-x-12 px-4 md:mx-auto lg:max-w-7xl">
-      <div className="w-2/3">
-        <Breadcrumbs path={path} />
-        <Title>{title}</Title>
-        <Subtitle>{subtitle}</Subtitle>
-        <div className="mb-4 text-lg">
-          <A external href={url ?? ''}>
-            {url}
-          </A>
-        </div>
-        <ParsedHTML>{description}</ParsedHTML>
-        {!!screenshots && (
-          <>
-            <div className="mb-2 mt-8 text-lg ">Screenshots</div>
-
-            <ul className="inline-block">
-              {screenshots.data.map((screenshot) => (
-                <li
-                  key={screenshot.id}
-                  className="relative inline-block h-52 max-w-sm p-3"
-                >
-                  <PopupImage
-                    src={`${STRAPI_URL}${screenshot.attributes.url}`}
-                    width={800}
-                    height={200}
-                    alt={
-                      screenshot.attributes.alternativeText ??
-                      `${title} screenshot`
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
-      <div className="mt-12 hidden w-1/3 md:block">
-        <ContextBox title="" githubLinks={[githubURL]} />
-      </div>
-    </div>
+    <PageLayout>
+      <Breadcrumbs path={path} />
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+      <PrimaryLink url={url} />
+      <ParsedHTML>{description}</ParsedHTML>
+      <ScreenshotGrid screenshots={screenshots?.data} />
+    </PageLayout>
   );
 }

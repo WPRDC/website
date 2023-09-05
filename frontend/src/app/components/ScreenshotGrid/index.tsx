@@ -4,19 +4,20 @@ import { STRAPI_URL } from '@/app/lib/constants';
 import React from 'react';
 
 export interface ScreenshotGridProps {
+  title?: string;
   screenshots?: IMedia[];
   pageTitle?: string | null;
 }
 
 export function ScreenshotGrid({
+  title,
   screenshots,
   pageTitle,
 }: ScreenshotGridProps) {
   if (!screenshots || !screenshots.length) return null;
   return (
     <div>
-      <div className="my-8 mb-2 text-lg ">Screenshots</div>
-
+      <div className="my-8 mb-2 text-lg ">{title ?? 'Screenshots'}</div>
       <ul className="inline-block">
         {screenshots.map((screenshot) => (
           <li
