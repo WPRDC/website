@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { getProjects, getTools } from '@/app/lib/data-fetchers';
+import { getProjects } from '@/app/lib/data-fetchers';
 import React from 'react';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
-import Image from 'next/image';
-import { Card } from '@/app/components/Card';
+import { Card, CardGrid } from '@/app/components/Card';
+import { PageLayout } from '@/app/components/PageLayout';
 
 type Props = {
   params: {
@@ -44,7 +44,7 @@ export default async function ToolListingRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container items-start px-4 md:mx-auto lg:max-w-5xl">
+    <PageLayout>
       <Breadcrumbs path={path} />
       <Title>Projects</Title>
       <ParsedHTML>
@@ -54,7 +54,7 @@ export default async function ToolListingRoute({ params }: Props) {
         lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
         is an addled mate.
       </ParsedHTML>
-      <ul className="my-8 grid grid-cols-3">
+      <CardGrid>
         {projects.map(({ attributes: project }) => (
           <Card
             href={`/projects/${project.slug}`}
@@ -63,7 +63,7 @@ export default async function ToolListingRoute({ params }: Props) {
             thumbnailURL={`${STRAPI_URL}${project.thumbnail?.data?.attributes.url}`}
           />
         ))}
-      </ul>
-    </div>
+      </CardGrid>
+    </PageLayout>
   );
 }

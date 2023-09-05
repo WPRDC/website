@@ -48,7 +48,7 @@ export function ContextBox({
   const links: IElementsLink[] = relatedPages.filter(notNull);
 
   return (
-    <div className="border-text dark:border-textDark3wsz fixed mt-16 w-72 border p-2">
+    <div className="border-text dark:border-textDark3wsz fixed w-72 border p-2">
       {!!contents && !!contents.match('<h') && (
         <>
           <div className="mb-2 text-xs font-bold uppercase">

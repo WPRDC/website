@@ -4,7 +4,8 @@ import React from 'react';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
-import { Card } from '@/app/components/Card';
+import { Card, CardGrid } from '@/app/components/Card';
+import { PageLayout } from '@/app/components/PageLayout';
 
 type Props = {
   params: {
@@ -43,7 +44,7 @@ export default async function ToolListingRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container px-4 md:mx-auto lg:max-w-5xl">
+    <PageLayout>
       <Breadcrumbs path={path} />
       <Title>Talks and Publications</Title>
       <ParsedHTML>
@@ -53,7 +54,7 @@ export default async function ToolListingRoute({ params }: Props) {
         lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
         is an addled mate.
       </ParsedHTML>
-      <ul className="my-8 grid grid-cols-3 items-stretch gap-6">
+      <CardGrid>
         {artifacts.map(({ attributes: artifact }) => (
           <Card
             href={`/talks-and-publications/${artifact.slug}`}
@@ -62,7 +63,7 @@ export default async function ToolListingRoute({ params }: Props) {
             thumbnailURL={`${STRAPI_URL}${artifact.primaryImage?.data?.attributes.url}`}
           />
         ))}
-      </ul>
-    </div>
+      </CardGrid>
+    </PageLayout>
   );
 }

@@ -55,7 +55,7 @@ export default async function ArtifactsRoute({ params }: Props) {
   ];
 
   return (
-    <PageLayout contextBoxProps={{ relatedPages }}>
+    <PageLayout contextBoxProps={{ relatedPages, relatedLinksTitle: 'Links' }}>
       <Breadcrumbs path={path} />
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
