@@ -6,6 +6,8 @@ import { INavbarSubMenuItem, INavMenuItem } from '@/app/types';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
+import { HiExternalLink } from 'react-icons/hi';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
 
 export interface NavbarProps {
   logoURL: string | null;
@@ -68,15 +70,20 @@ export default function Index({
           <div className="flex-grow lg:flex-grow-0">
             <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
           </div>
-          <nav className="hidden md:block">
-            <ul>
+          <nav className="hidden h-full md:block">
+            <ul className="h-full">
               {menuItems.map((menuItem) => (
-                <li className="inline-block px-1">
+                <li className="m-1 inline-block h-full px-1">
                   <button
                     onClick={handleMenuClick(menuItem)}
-                    className="dark:hover:text-primary px-3 decoration-2 hover:font-black hover:underline"
+                    className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full items-center rounded-sm p-2 hover:font-black hover:ring-1"
                   >
                     {menuItem.attributes.primaryLink?.label}
+                    {currentMenuItem?.id === menuItem.id ? (
+                      <FaChevronUp className="ml-1.5 inline-block text-xs" />
+                    ) : (
+                      <FaChevronDown className="ml-1.5 inline-block text-xs" />
+                    )}
                   </button>
                 </li>
               ))}
@@ -119,7 +126,12 @@ export default function Index({
                         href={menuItem.link?.url ?? '#'}
                         className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
                       >
-                        <div className="text-lg">{menuItem.link?.label}</div>
+                        <div className="text-lg">
+                          {menuItem.link?.label}
+                          {menuItem.link?.newTab && (
+                            <HiExternalLink className="inline-block text-sm" />
+                          )}
+                        </div>
                         {!!menuItem.deatailLine && (
                           <div className="text-textSecondary dark:text-textSecondaryDark text-sm">
                             {menuItem.deatailLine}
@@ -136,6 +148,9 @@ export default function Index({
                                 className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
                               >
                                 {subItem.label}
+                                {menuItem.link?.newTab && (
+                                  <HiExternalLink className="inline-block text-sm" />
+                                )}
                               </Link>
                             </li>
                           ))}
