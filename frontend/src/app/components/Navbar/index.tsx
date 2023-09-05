@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
-import { IElementsLink, INavbarSubMenuItem, INavMenuItem } from '@/app/types';
-import NavbarMenu from '@/app/components/Navbar/NavbarMenu';
+import { INavbarSubMenuItem, INavMenuItem } from '@/app/types';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
@@ -23,13 +22,14 @@ export default function Index({
   const [currentMenuItem, setCurrentMenuItem] = useState<INavMenuItem | null>();
   const [currentDescription, setCurrentDescription] = useState<string | null>();
 
+  const ref = useRef<HTMLDivElement>(null);
+
   function closeMenu() {
     setCurrentMenuItem(null);
   }
 
   const handleMenuClick = (menuItem: INavMenuItem) => () => {
     if (!!currentMenuItem && menuItem.id === currentMenuItem.id) {
-      console.log('CLOSING');
       closeMenu();
     } else {
       setCurrentMenuItem(menuItem);
@@ -47,12 +47,21 @@ export default function Index({
       }
     }
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        closeMenu();
+      }
+    };
     document.addEventListener('keydown', handleEscapeKey);
-    return () => document.removeEventListener('keydown', handleEscapeKey);
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('click', handleClickOutside, true);
+    };
   }, []);
 
   return (
-    <div className="fixed top-0 w-full dark:text-gray-100">
+    <div ref={ref} className="fixed top-0 w-full dark:text-gray-100">
       {/* Navbar */}
       <div className="z-50 w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
         <div className="container mx-auto flex w-full max-w-7xl items-center space-x-24">
@@ -146,9 +155,6 @@ export default function Index({
           </div>
         </div>
       )}
-
-      {/* Overlay */}
-      <div className="fixed h-full w-full" onClick={closeMenu}></div>
     </div>
   );
 }
