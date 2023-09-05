@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {};
 }
 
-export default async function BlogRoute({ params }: Props) {
+export default async function ProjectRoute({ params }: Props) {
   const { category, slug, lang } = params;
   const { data: tools } = await getContentBySlug<ITool>(
-    '/tools',
+    '/projects',
     slug,
     lang,
     '*',
