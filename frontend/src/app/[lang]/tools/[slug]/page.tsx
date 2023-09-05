@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogRoute({ params }: Props) {
   const { category, slug, lang } = params;
   const { data: projects } = await getContentBySlug<IProject>(
-    '/projects',
+    '/tools',
     slug,
     lang,
     '*',
