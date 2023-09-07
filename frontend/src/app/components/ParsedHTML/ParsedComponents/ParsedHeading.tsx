@@ -1,5 +1,4 @@
 import { HeadingTag, ParserProps } from '@/app/types';
-import A from '@/app/components/A';
 import { domToReact } from 'html-react-parser';
 import { defaultReplace } from '@/app/components/ParsedHTML/lib';
 import classNames from 'classnames';
@@ -9,6 +8,8 @@ export interface ParsedHeadingProps extends ParserProps {}
 export function ParsedHeading(props: ParsedHeadingProps) {
   const { style, ...attribs } = props.attribs;
   const Heading = props.name as HeadingTag;
+
+  console.log('🧢', props.children.length);
 
   return (
     <Heading

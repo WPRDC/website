@@ -58,13 +58,7 @@ export default async function WeeknoteListingRoute({ params }: Props) {
     <div className="container items-start px-4 md:mx-auto lg:max-w-5xl">
       <Breadcrumbs path={path} />
       <Title>Weeknotes</Title>
-      <ParsedHTML>
-        Ahoy, swashbuckling doubloons, grace, booty, and strength. The breeze
-        falls death like an evil pirate. Winds wave with malaria! corsairs
-        hobble with adventure. Salty, clear whales quirky hoist a fine, misty
-        lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
-        is an addled mate.
-      </ParsedHTML>
+      {/* todo: setup leading content */}
       <div className="my-4 text-4xl">Our most recent weeknotes:</div>
       <nav>
         <ul className="inline-block space-x-3">

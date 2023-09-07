@@ -1,6 +1,8 @@
 import { IBlog, ListableContentType } from '@/app/types';
 import { EXCERPT_SIZE } from '@/app/lib/constants';
 import A from '@/app/components/A';
+import { ParsedHTML } from '@/app/components/ParsedHTML';
+import { excerptReplacer, makeReplacer } from '@/app/components/ParsedHTML/lib';
 
 export interface ListItemProps<T extends ListableContentType<string | never>> {
   item: T;
@@ -15,9 +17,8 @@ export function ListItem<T extends ListableContentType<string | never>>({
     item.attributes;
 
   const text = excerpt || article || '';
-  const ellipses = text.length > EXCERPT_SIZE ? '...' : '';
 
-  const href = `${basePath}/${category?.data?.attributes.slug}/${slug}`;
+  const href = `${basePath}/${slug}`;
 
   return (
     <li
@@ -35,11 +36,16 @@ export function ListItem<T extends ListableContentType<string | never>>({
       </div>
       <div className="text-textSecondary dark:text-textSecondaryDark text-sm">
         <span className="font-light italic">by </span>
-        <span className="font-bold">{author?.data?.attributes.name}</span>
+        <span className="font-bold">
+          {author?.data?.attributes.name ?? 'The WPRDC'}
+        </span>
         <span className="font-light italic"> on </span>
         <span className="font-bold">
           {new Date(publishedAt).toLocaleDateString('en-US')}
         </span>
+      </div>
+      <div className="line-clamp-3">
+        <ParsedHTML replacer={makeReplacer(excerptReplacer)}>{text}</ParsedHTML>
       </div>
       <A variant="button" buttonSize="S" buttonStyle="primary" href={href}>
         Read More

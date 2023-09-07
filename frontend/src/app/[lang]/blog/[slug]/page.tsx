@@ -41,18 +41,18 @@ export default async function BlogRoute({ params }: Props) {
     },
     {
       id: '2',
-      label: 'News',
-      href: '/news',
+      label: 'Blog',
+      href: '/blog',
     },
     {
       id: '3',
       label: category,
-      href: `/news/${category}`,
+      href: `/blog/${category}`,
     },
     {
       id: '4',
       label: title ?? '',
-      href: `/news/${category}/${slug}`,
+      href: `/blog/${category}/${slug}`,
     },
   ];
 

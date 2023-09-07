@@ -30,7 +30,7 @@ export function Card({
           {!!subtitle && <div>{subtitle}</div>}
         </div>
         {thumbnailURL && (
-          <div className="relative h-40 border-2">
+          <div className="relative z-0 h-40 border-2">
             <Image
               src={thumbnailURL}
               alt={thumbnailAltText ?? `${title} thumbnail`}

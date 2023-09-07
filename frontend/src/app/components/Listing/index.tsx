@@ -1,17 +1,9 @@
 import { ListableContentType } from '@/app/types';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ListItem } from './ListItem';
+export { ListItem };
+export interface ListingProps extends PropsWithChildren {}
 
-export interface ListingProps {
-  items: ListableContentType[];
-}
-
-export function Listing({ items }: ListingProps) {
-  return (
-    <ul className="">
-      {items.map((item) => (
-        <ListItem item={item} />
-      ))}
-    </ul>
-  );
+export function Listing({ children }: ListingProps) {
+  return <ul className="">{children}</ul>;
 }

@@ -63,9 +63,9 @@ export default function Index({
   }, []);
 
   return (
-    <div ref={ref} className="fixed top-0 w-full dark:text-gray-100">
+    <div ref={ref} className="fixed top-0 z-50 w-full dark:text-gray-100">
       {/* Navbar */}
-      <div className="z-50 w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
+      <div className="w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
         <div className="container mx-auto flex w-full max-w-7xl items-center space-x-24">
           <div className="flex-grow lg:flex-grow-0">
             <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
@@ -73,7 +73,7 @@ export default function Index({
           <nav className="hidden h-full md:block">
             <ul className="h-full">
               {menuItems.map((menuItem) => (
-                <li className="m-1 inline-block h-full px-1">
+                <li key={menuItem.id} className="m-1 inline-block h-full px-1">
                   <button
                     onClick={handleMenuClick(menuItem)}
                     className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full items-center rounded-sm p-2 hover:font-black hover:ring-1"

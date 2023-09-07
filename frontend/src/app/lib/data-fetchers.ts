@@ -11,6 +11,7 @@ import {
   IWeeknote,
   StrapiResponse,
 } from '@/app/types';
+import { DEFAULT_PAGE_SIZE } from '@/app/lib/constants';
 
 export async function getContentBySlug<T>(
   path: string,
@@ -91,6 +92,8 @@ const blogPostFields: string[] | string = '*';
 
 export async function getBlogPosts(
   category?: string,
+  page: number = 1,
+  pageSize: number = DEFAULT_PAGE_SIZE,
 ): Promise<StrapiResponse<IBlog<(typeof blogPostFields)[number]>[]>> {
   const filters = category
     ? {
@@ -100,9 +103,15 @@ export async function getBlogPosts(
       }
     : undefined;
 
+  const pagination = {
+    page,
+    pageSize,
+  };
+
   const queryParams = {
     sort: { createdAt: 'desc' },
     filters,
+    pagination,
     populate: blogPostFields,
   };
 

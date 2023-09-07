@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 export interface PageLayoutProps extends PropsWithChildren {
   contextBoxProps?: ContextBoxProps;
-  contentElement?: 'div' | 'article';
+  contentElement?: 'div' | 'article' | 'section';
 }
 
 export function PageLayout({
   children,
   contextBoxProps,
-  contentElement = 'div',
+  contentElement = 'section',
 }: PageLayoutProps) {
   const Content = contentElement;
   return (

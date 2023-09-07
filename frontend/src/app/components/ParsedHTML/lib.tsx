@@ -38,10 +38,23 @@ export const defaultReplacers: ReplacerRecord = {
   br: (props) => <br />,
 };
 
-// getting toc from html string
-// 1. parse it and replace the h elements with li/a elements
-// 2. remove everything else
-//
+// only show text when making an excerpt of some rich content
+export const excerptReplacer: ReplacerRecord = {
+  figure: () => <></>,
+  figcaption: () => <></>,
+  img: () => <></>,
+  a: ParsedA,
+  p: ParsedP,
+  h1: ParsedP,
+  h2: ParsedP,
+  h3: ParsedP,
+  h4: ParsedP,
+  h5: ParsedP,
+  h6: ParsedP,
+  ul: ParsedUL,
+  ol: ParsedOL,
+  br: (props) => <br />,
+};
 
 const HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -73,7 +86,6 @@ export const tocReplacer = (domNode: DOMNode) => {
   if (domNode instanceof Element) {
     const tagName = domNode.name;
     if (HEADING_TAGS.includes(domNode.name)) {
-      console.log(tagName);
       return (
         <li
           className={classNames('mb-1', {

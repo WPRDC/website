@@ -47,13 +47,7 @@ export default async function ToolListingRoute({ params }: Props) {
     <PageLayout>
       <Breadcrumbs path={path} />
       <Title>Projects</Title>
-      <ParsedHTML>
-        Ahoy, swashbuckling doubloons, grace, booty, and strength. The breeze
-        falls death like an evil pirate. Winds wave with malaria! corsairs
-        hobble with adventure. Salty, clear whales quirky hoist a fine, misty
-        lad. Old, cold scallywags fast raid a swashbuckling, big girl. adventure
-        is an addled mate.
-      </ParsedHTML>
+      {/* todo: setup leading content */}
       <CardGrid>
         {projects.map(({ attributes: project }) => (
           <Card
