@@ -1,19 +1,20 @@
 import { HeadingTag, ParserProps } from '@/app/types';
 import { domToReact } from 'html-react-parser';
-import { defaultReplace } from '@/app/components/ParsedHTML/lib';
+import { defaultReplace, makeHeadingID } from '@/app/components/ParsedHTML/lib';
 import classNames from 'classnames';
+import slugify from 'slugify';
 
 export interface ParsedHeadingProps extends ParserProps {}
 
 export function ParsedHeading(props: ParsedHeadingProps) {
   const { style, ...attribs } = props.attribs;
   const Heading = props.name as HeadingTag;
-
-  console.log('🧢', props.children.length);
+  const idSlug = makeHeadingID(props.children);
 
   return (
     <Heading
       {...attribs}
+      id={idSlug}
       className={classNames(
         'text-textSecondary dark:text-textSecondaryDark mt-8 font-mono font-semibold',
         {
