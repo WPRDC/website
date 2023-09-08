@@ -65,8 +65,8 @@ export default function Index({
   return (
     <div ref={ref} className="top-0 z-50 w-full dark:text-gray-100">
       {/* Navbar */}
-      <div className="w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
-        <div className="container mx-auto flex w-full max-w-7xl items-center space-x-24">
+      <div className="flex w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
+        <div className="container mx-auto flex w-full max-w-5xl items-center justify-between ">
           <div className="flex-grow lg:flex-grow-0">
             <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
           </div>

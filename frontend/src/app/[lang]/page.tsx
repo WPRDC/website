@@ -35,10 +35,8 @@ export default async function HomePage({
           aria-labelledby="search-label"
           placeholder="Search for data"
         />
-        <p className="mb-2 py-2 text-sm italic md:text-base">
-          {searchSection?.description}
-        </p>
-        <div className="mt-8 grid-cols-2">
+        <p className="my-4 py-2 md:text-lg">{searchSection?.description}</p>
+        <div className="mt-4 grid-cols-2">
           {buttons.map((button) => (
             <A
               href={button.buttonURL ?? '#'}
