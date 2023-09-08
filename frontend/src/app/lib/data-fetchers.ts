@@ -74,6 +74,8 @@ const homePageFields = [
   'publishers.partners',
   'publishers.publishers',
   'publishers.button',
+  'publishers.partners.partnerLogo',
+  'publishers.publishers.partnerLogo',
 ];
 
 export async function getHomePage(): Promise<

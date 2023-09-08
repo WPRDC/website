@@ -3,6 +3,8 @@ import SearchBar from '@/app/components/SearchBar';
 import { getHomePage } from '@/app/lib/data-fetchers';
 import A from '@/app/components/A';
 import { Blurb } from '@/app/components/Blurb';
+import { STRAPI_URL } from '@/app/lib/constants';
+import Image from 'next/image';
 
 export default async function HomePage({
   params,
@@ -22,18 +24,21 @@ export default async function HomePage({
   return (
     <div className="mx-4 max-w-4xl lg:mx-auto">
       {/* Big Search*/}
-      <div className="mt-2 py-6 md:mt-6 lg:mt-12">
+      <div className="mt-2 py-4 md:mt-6 lg:mt-4">
         <h2
-          className="my-2 text-2xl font-bold leading-tight md:text-3xl lg:text-5xl"
+          className="my-2 mb-5 text-2xl font-bold leading-tight md:text-3xl lg:text-5xl"
           id="search-label"
         >
           {searchSection?.title}
         </h2>
-        <SearchBar aria-labelledby="search-label" />
+        <SearchBar
+          aria-labelledby="search-label"
+          placeholder="Search for data"
+        />
         <p className="mb-2 py-2 text-sm italic md:text-base">
           {searchSection?.description}
         </p>
-        <div className="grid-cols-2">
+        <div className="mt-8 grid-cols-2">
           {buttons.map((button) => (
             <A
               href={button.buttonURL ?? '#'}
@@ -64,8 +69,8 @@ export default async function HomePage({
         <div className="py-4">
           <div className="mx-auto grid w-fit grid-cols-3 gap-4 pb-4 pt-2">
             {partners.map((partner) => (
-              <img
-                src="https://placehold.co/140"
+              <Image
+                src={`${STRAPI_URL}${partner.partnerLogo?.data?.attributes.url}`}
                 width={140}
                 height={140}
                 alt={partner.partnerName ?? ''}
@@ -73,10 +78,10 @@ export default async function HomePage({
             ))}
           </div>
 
-          <div className="mx-auto grid w-fit grid-cols-3 gap-4 py-2 sm:grid-cols-4 lg:grid-cols-6">
+          <div className="mx-auto grid w-fit grid-cols-3 items-center gap-4 py-2 sm:grid-cols-4 lg:grid-cols-6">
             {otherPublishers.map((publisher) => (
-              <img
-                src="https://placehold.co/120"
+              <Image
+                src={`${STRAPI_URL}${publisher.partnerLogo?.data?.attributes.url}`}
                 width={120}
                 height={120}
                 alt={publisher.partnerName ?? ''}
