@@ -35,7 +35,9 @@ export default async function HomePage({
           aria-labelledby="search-label"
           placeholder="Search for data"
         />
-        <p className="my-4 py-2 md:text-lg">{searchSection?.description}</p>
+        <p className="mb-4 mt-8 py-2 text-justify md:text-lg">
+          {searchSection?.description}
+        </p>
         <div className="mt-4 grid-cols-2">
           {buttons.map((button) => (
             <A
