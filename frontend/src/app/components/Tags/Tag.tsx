@@ -1,8 +1,8 @@
-import { ISharedTag, Size } from '@/app/types';
+import { ITag, Size } from '@/app/types';
 import classNames from 'classnames';
 
 export interface TagProps {
-  tag: ISharedTag;
+  tag: ITag;
   size?: Size;
 }
 
@@ -20,7 +20,7 @@ export function Tag({ tag, size = 'M' }: TagProps) {
         },
       )}
     >
-      {tag.tag}
+      {tag.attributes.tag}
     </li>
   );
 }

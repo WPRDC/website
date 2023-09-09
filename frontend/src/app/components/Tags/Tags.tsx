@@ -1,9 +1,9 @@
-import { ISharedTag, Size } from '@/app/types';
+import { ITag, Size } from '@/app/types';
 import classNames from 'classnames';
 import { Tag } from './Tag';
 
 export interface TagsProps {
-  tags?: ISharedTag[];
+  tags?: ITag[];
   size?: Size;
 }
 
