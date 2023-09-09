@@ -22,6 +22,7 @@ export * from "./api/Author";
 export * from "./api/Blog";
 export * from "./api/Category";
 export * from "./api/Doc";
+export * from "./api/Event";
 export * from "./api/Global";
 export * from "./api/Home";
 export * from "./api/NavMenuItem";

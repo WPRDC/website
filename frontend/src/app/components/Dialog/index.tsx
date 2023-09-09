@@ -12,8 +12,6 @@ export function Dialog({ children, ...props }: DialogProps) {
   const ref = useRef(null);
   const { dialogProps, titleProps } = useDialog(props, ref);
 
-  console.log('🥎', props);
-
   return (
     <div {...dialogProps} ref={ref}>
       {children}

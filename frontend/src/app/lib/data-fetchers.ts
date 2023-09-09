@@ -12,6 +12,8 @@ import {
   StrapiResponse,
 } from '@/app/types';
 import { DEFAULT_PAGE_SIZE } from '@/app/lib/constants';
+import { format } from 'logform';
+import metadata = format.metadata;
 
 export async function getContentBySlug<T>(
   path: string,
@@ -54,6 +56,9 @@ const globalFields = [
   'navbarLinks',
   'affiliateLogos.image',
   'affiliateLogos.darkImage',
+  'seo',
+  'metadata',
+  'favicon',
 ];
 
 export async function getGlobal(): Promise<
