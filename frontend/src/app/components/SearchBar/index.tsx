@@ -26,10 +26,14 @@ export default function SearchBar(props: SearchBarProps) {
 
   return (
     <div>
-      <form method="GET" action={SEARCH_URL} className="flex space-x-2">
+      <form
+        method="GET"
+        action={SEARCH_URL}
+        className="space-x-2 space-y-4 lg:flex"
+      >
         <label {...labelProps}>{label}</label>
-        <div className="border-primary focus:border-primary flex w-full max-w-lg items-center border-4 outline-0 dark:text-white">
-          <FaSearch className="mx-2 text-3xl" />
+        <div className="border-primary focus:border-primary flex w-full items-center border-4 outline-0 dark:text-white lg:max-w-lg">
+          <FaSearch className="mx-2 text-3xl" role="presentation" />
           <input
             {...inputProps}
             name="q"

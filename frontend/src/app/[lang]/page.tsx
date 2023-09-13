@@ -70,7 +70,11 @@ export default async function HomePage({
           <div className="mx-auto grid w-fit grid-cols-3 gap-4 pb-4 pt-2">
             {partners.map((partner) => (
               <Image
-                src={`${STRAPI_URL}${partner.partnerLogo?.data?.attributes.url}`}
+                src={
+                  partner.partnerLogo?.data?.attributes.url
+                    ? `${STRAPI_URL}${partner.partnerLogo?.data?.attributes.url}`
+                    : ''
+                }
                 width={140}
                 height={140}
                 alt={partner.partnerName ?? ''}
@@ -81,7 +85,11 @@ export default async function HomePage({
           <div className="mx-auto grid w-fit grid-cols-3 items-center gap-4 py-2 sm:grid-cols-4 lg:grid-cols-6">
             {otherPublishers.map((publisher) => (
               <Image
-                src={`${STRAPI_URL}${publisher.partnerLogo?.data?.attributes.url}`}
+                src={
+                  publisher.partnerLogo?.data?.attributes.url
+                    ? `${STRAPI_URL}${publisher.partnerLogo?.data?.attributes.url}`
+                    : ''
+                }
                 width={120}
                 height={120}
                 alt={publisher.partnerName ?? ''}
@@ -90,7 +98,7 @@ export default async function HomePage({
           </div>
         </div>
 
-        <div className="mx-auto w-fit items-center py-4 text-xl font-bold md:flex">
+        <div className="mx-auto w-fit items-center py-4 text-xl font-bold lg:flex">
           <div>{publishers?.callToActionText}</div>
           <A
             variant="button"

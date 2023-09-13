@@ -7,7 +7,8 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { HiExternalLink } from 'react-icons/hi';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
+import { FaChevronDown, FaChevronUp, FaX } from 'react-icons/fa6';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 export interface NavbarProps {
   logoURL: string | null;
@@ -27,12 +28,13 @@ export default function Index({
   const ref = useRef<HTMLDivElement>(null);
 
   function closeMenu() {
+    setIsOpen(false);
     setCurrentMenuItem(null);
   }
 
   const handleMenuClick = (menuItem: INavMenuItem) => () => {
     if (!!currentMenuItem && menuItem.id === currentMenuItem.id) {
-      closeMenu();
+      setCurrentMenuItem(null);
     } else {
       setCurrentMenuItem(menuItem);
     }
@@ -65,18 +67,44 @@ export default function Index({
   return (
     <div ref={ref} className="top-0 z-50 w-full dark:text-gray-100">
       {/* Navbar */}
-      <div className="flex w-full border-b-2 border-black bg-white py-3 dark:border-slate-800 dark:bg-black">
-        <div className="container mx-auto flex w-full max-w-5xl items-center justify-between ">
-          <div className="flex-grow lg:flex-grow-0">
+      <div className="w-full border-b-2 border-black bg-white dark:border-slate-800 dark:bg-black lg:flex lg:pb-3">
+        <div
+          className={classNames(
+            'mx-auto w-full max-w-5xl lg:flex lg:justify-between',
+          )}
+        >
+          <div className="flex w-full justify-between p-4 lg:w-fit">
             <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
+            <button
+              aria-hidden
+              className={classNames('p-2 lg:hidden')}
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <GiHamburgerMenu
+                className={classNames('text-2xl', isOpen ? 'hidden' : 'block')}
+              />
+              <FaChevronUp
+                className={classNames('text-2xl', isOpen ? 'block' : 'hidden')}
+              />
+            </button>
           </div>
-          <nav className="hidden h-full md:block">
+          <nav
+            aria-hidden
+            className={classNames(
+              'h-full lg:block',
+              isOpen ? 'block' : 'hidden',
+            )}
+          >
             <ul className="h-full">
               {menuItems.map((menuItem) => (
-                <li key={menuItem.id} className="m-1 inline-block h-full px-1">
+                <li
+                  key={menuItem.id}
+                  className="m-1 h-full px-1 lg:inline-block lg:border-none"
+                >
                   <button
                     onClick={handleMenuClick(menuItem)}
-                    className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full items-center rounded-sm p-2 hover:font-black hover:ring-1"
+                    className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full w-full items-center rounded-sm px-2 py-4 hover:font-black hover:ring-1 md:py-2 lg:w-fit"
                   >
                     {menuItem.attributes.primaryLink?.label}
                     {currentMenuItem?.id === menuItem.id ? (
@@ -85,94 +113,102 @@ export default function Index({
                       <FaChevronDown className="ml-1.5 inline-block text-xs" />
                     )}
                   </button>
+                  <ul
+                    className={classNames(
+                      'border-textSecondary ml-4 bg-white dark:bg-black lg:ml-0 lg:w-full lg:border-b',
+                      currentMenuItem?.id === menuItem.id
+                        ? 'lg:absolute lg:left-0 lg:m-1'
+                        : 'hidden',
+                    )}
+                  >
+                    <div className="w-full pb-2 lg:mx-auto lg:flex lg:max-w-5xl">
+                      <div className="w-full lg:w-5/12">
+                        {menuItem.attributes.subMenu?.map((subMenuItem) => (
+                          <li
+                            key={subMenuItem.id}
+                            onMouseEnter={handleHover(subMenuItem)}
+                          >
+                            <Link
+                              onClick={closeMenu}
+                              href={subMenuItem.link?.url ?? '#'}
+                              className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
+                            >
+                              <div className="text-lg">
+                                {subMenuItem.link?.label}
+                                {subMenuItem.link?.newTab && (
+                                  <HiExternalLink className="inline-block text-sm" />
+                                )}
+                              </div>
+                              {!!subMenuItem.deatailLine && (
+                                <div className="text-textSecondary dark:text-textSecondaryDark text-sm">
+                                  {subMenuItem.deatailLine}
+                                </div>
+                              )}
+                            </Link>
+                            {!!subMenuItem.subItems &&
+                              !!subMenuItem.subItems.length && (
+                                <ul className="ml-4">
+                                  {subMenuItem.subItems.map((subItem) => (
+                                    <li>
+                                      <Link
+                                        onClick={closeMenu}
+                                        href={subItem.url ?? '#'}
+                                        className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
+                                      >
+                                        {subItem.label}
+                                        {subMenuItem.link?.newTab && (
+                                          <HiExternalLink className="inline-block text-sm" />
+                                        )}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                          </li>
+                        ))}
+                      </div>
+                      <div className="hidden lg:w-7/12">
+                        {!!currentMenuItem && (
+                          <ParsedHTML>
+                            {currentDescription ??
+                              currentMenuItem.attributes.defaultDescription ??
+                              ''}
+                          </ParsedHTML>
+                        )}
+                      </div>
+                    </div>
+                  </ul>
                 </li>
               ))}
             </ul>
           </nav>
-          <button
-            className={classNames('p-4 md:hidden')}
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="text-text h-6 w-6 dark:text-gray-100"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
+          {/* screen reader navigation */}
+          <nav className="sr-only">
+            <ul>
+              {menuItems.map((menuItem) => (
+                <li key={menuItem.id}>
+                  {menuItem.attributes.primaryLink?.label}
+                  <ul>
+                    {menuItem.attributes.subMenu?.map((subMenuItem) => (
+                      <li
+                        key={subMenuItem.id}
+                        onMouseEnter={handleHover(subMenuItem)}
+                      >
+                        <Link
+                          onClick={closeMenu}
+                          href={subMenuItem.link?.url ?? '#'}
+                        >
+                          {subMenuItem.link?.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
-
-      {/* Menu Drawer */}
-      {!!currentMenuItem && (
-        <div className="fixed z-50 w-full border-b-4 border-black bg-white dark:border-slate-800 dark:bg-black">
-          <div className="container static mx-auto flex min-h-full w-full max-w-4xl py-4">
-            <div className="w-2/5">
-              {!!currentMenuItem.attributes.subMenu && (
-                <ul className="mr-8">
-                  {currentMenuItem.attributes.subMenu.map((menuItem) => (
-                    <li key={menuItem.id} onMouseEnter={handleHover(menuItem)}>
-                      <Link
-                        onClick={closeMenu}
-                        href={menuItem.link?.url ?? '#'}
-                        className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
-                      >
-                        <div className="text-lg">
-                          {menuItem.link?.label}
-                          {menuItem.link?.newTab && (
-                            <HiExternalLink className="inline-block text-sm" />
-                          )}
-                        </div>
-                        {!!menuItem.deatailLine && (
-                          <div className="text-textSecondary dark:text-textSecondaryDark text-sm">
-                            {menuItem.deatailLine}
-                          </div>
-                        )}
-                      </Link>
-                      {!!menuItem.subItems && !!menuItem.subItems.length && (
-                        <ul className="ml-4">
-                          {menuItem.subItems.map((subItem) => (
-                            <li>
-                              <Link
-                                onClick={closeMenu}
-                                href={subItem.url ?? '#'}
-                                className="hover:ring-primary dark:hover:bg-backgroundDark decoration-primary my-1 block p-2 hover:bg-amber-100 hover:font-bold hover:ring-2"
-                              >
-                                {subItem.label}
-                                {menuItem.link?.newTab && (
-                                  <HiExternalLink className="inline-block text-sm" />
-                                )}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            <div className="w-3/5">
-              {!!currentMenuItem && (
-                <ParsedHTML>
-                  {currentDescription ??
-                    currentMenuItem.attributes.defaultDescription ??
-                    ''}
-                </ParsedHTML>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

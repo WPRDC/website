@@ -72,7 +72,9 @@ export function ContextBox({
                   key={link.url}
                   className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
                 >
-                  <LinkIcon link={link} />
+                  <span aria-hidden>
+                    <LinkIcon link={link} />
+                  </span>
                   <A href={link.url ?? ''} external={!!link.newTab}>
                     {link.label}
                   </A>
