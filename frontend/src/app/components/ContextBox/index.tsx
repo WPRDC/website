@@ -48,49 +48,51 @@ export function ContextBox({
   const links: IElementsLink[] = relatedPages.filter(notNull);
 
   return (
-    <div className="border-text dark:border-textDark3wsz fixed w-72 border p-2">
-      {!!contents && !!contents.match('<h') && (
-        <>
-          <div className="mb-2 text-xs font-bold uppercase">
-            {'On this page'}
+    <>
+      <div className="border-text dark:border-textDark w-full border-t p-2 lg:border">
+        {!!contents && !!contents.match('<h') && (
+          <div className="hidden lg:block">
+            <div className="mb-2 text-xs font-bold uppercase">
+              {'On this page'}
+            </div>
+            <ol className="px-1.5 text-sm">
+              <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>
+            </ol>
           </div>
-          <ol className="px-1.5 text-sm">
-            <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>
-          </ol>
-        </>
-      )}
+        )}
 
-      {!!links && !!links.length && (
-        <>
-          <div className="mb-1 text-sm uppercase">
-            {relatedLinksTitle ?? 'More Links'}
+        {!!links && !!links.length && (
+          <>
+            <div className="mb-1 text-sm uppercase">
+              {relatedLinksTitle ?? 'More Links'}
+            </div>
+            <ul>
+              {!!links &&
+                links.map((link) => (
+                  <li
+                    key={link.url}
+                    className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
+                  >
+                    <span aria-hidden>
+                      <LinkIcon link={link} />
+                    </span>
+                    <A href={link.url ?? ''} external={!!link.newTab}>
+                      {link.label}
+                    </A>
+                  </li>
+                ))}
+            </ul>
+          </>
+        )}
+
+        {!!tags && !!tags.length && (
+          <div className="mt-5">
+            <div className="mb-2 text-xs font-bold uppercase">Tags</div>
+            <Tags tags={tags} size="S" />
           </div>
-          <ul>
-            {!!links &&
-              links.map((link) => (
-                <li
-                  key={link.url}
-                  className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
-                >
-                  <span aria-hidden>
-                    <LinkIcon link={link} />
-                  </span>
-                  <A href={link.url ?? ''} external={!!link.newTab}>
-                    {link.label}
-                  </A>
-                </li>
-              ))}
-          </ul>
-        </>
-      )}
-
-      {!!tags && !!tags.length && (
-        <div className="mt-5">
-          <div className="mb-2 text-xs font-bold uppercase">Tags</div>
-          <Tags tags={tags} size="S" />
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 

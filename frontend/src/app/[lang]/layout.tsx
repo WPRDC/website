@@ -72,7 +72,9 @@ export default async function RootLayout({
           darkLogoURL={navbarDarkLogoURL}
           menuItems={menuItems.data}
         />
-        <main className="mb-16 flex-grow pt-8">{children}</main>
+        <main className="mx-auto mb-16 max-w-6xl flex-grow px-2 pt-8">
+          {children}
+        </main>
         <Footer
           logoURL={footerLogoURL}
           darkLogoURL={footerDarkLogoURL}

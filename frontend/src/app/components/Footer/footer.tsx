@@ -20,7 +20,7 @@ export default function Footer({
 }: FooterProps) {
   return (
     <div className="border-textSecondary border-t-2 bg-black px-6 pb-16 pt-10">
-      <div className="container mx-auto space-y-4 lg:flex ">
+      <div className="container mx-auto max-w-screen-xl space-y-4 lg:flex ">
         <div>
           <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />
           <div className="mt-3 grid grid-cols-2 gap-2">

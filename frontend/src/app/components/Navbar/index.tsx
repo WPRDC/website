@@ -67,10 +67,10 @@ export default function Index({
   return (
     <div ref={ref} className="top-0 z-50 w-full dark:text-gray-100">
       {/* Navbar */}
-      <div className="w-full border-b-2 border-black bg-white dark:border-slate-800 dark:bg-black lg:flex lg:pb-3">
+      <div className="w-full border-b-2 border-black bg-white dark:border-slate-800 dark:bg-black lg:flex ">
         <div
           className={classNames(
-            'mx-auto w-full max-w-5xl lg:flex lg:justify-between',
+            'mx-auto w-full max-w-7xl lg:flex lg:items-center lg:justify-between',
           )}
         >
           <div className="flex w-full justify-between p-4 lg:w-fit">
@@ -92,19 +92,19 @@ export default function Index({
           <nav
             aria-hidden
             className={classNames(
-              'h-full lg:block',
+              'h-fit lg:block',
               isOpen ? 'block' : 'hidden',
             )}
           >
-            <ul className="h-full">
+            <ul className="">
               {menuItems.map((menuItem) => (
                 <li
                   key={menuItem.id}
-                  className="m-1 h-full px-1 lg:inline-block lg:border-none"
+                  className="m-1 h-fit items-center px-1 lg:inline-block lg:border-none"
                 >
                   <button
                     onClick={handleMenuClick(menuItem)}
-                    className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full w-full items-center rounded-sm px-2 py-4 hover:font-black hover:ring-1 md:py-2 lg:w-fit"
+                    className="dark:hover:text-primary dark:hover:bg-backgroundDark dark:ring-textSecondaryDark ring-textSecondary flex h-full w-full items-center rounded-sm px-2 py-4 hover:font-black hover:ring-1 md:py-2 lg:h-fit lg:w-fit"
                   >
                     {menuItem.attributes.primaryLink?.label}
                     {currentMenuItem?.id === menuItem.id ? (

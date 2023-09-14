@@ -99,15 +99,19 @@ export default async function HomePage({
         </div>
 
         <div className="mx-auto w-fit items-center py-4 text-xl font-bold lg:flex">
-          <div>{publishers?.callToActionText}</div>
-          <A
-            variant="button"
-            buttonStyle="primary"
-            href={publishers?.button?.buttonURL ?? '#'}
-            className="md:ml-8"
-          >
-            {publishers?.button?.buttonText}
-          </A>
+          <div className="text-center lg:text-start">
+            {publishers?.callToActionText}
+          </div>
+          <div className="w-full pt-2 text-center lg:inline-block lg:w-fit lg:pt-0">
+            <A
+              variant="button"
+              buttonStyle="primary"
+              href={publishers?.button?.buttonURL ?? '#'}
+              className="lg:ml-8"
+            >
+              {publishers?.button?.buttonText}
+            </A>
+          </div>
         </div>
       </div>
     </div>

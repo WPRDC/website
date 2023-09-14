@@ -112,7 +112,7 @@ export const tocReplacer = (domNode: DOMNode) => {
       const idSlug = makeHeadingID(domNode.children);
       return (
         <li
-          className={classNames('mb-1', {
+          className={classNames('mb-2', {
             '': tagName === 'h2',
             'ml-2': tagName === 'h3',
             'ml-3': tagName === 'h4',
