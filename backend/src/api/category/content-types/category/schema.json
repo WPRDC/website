@@ -12,12 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "label": {
+    "category": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "label"
+      "type": "uid"
     },
     "blogs": {
       "type": "relation",

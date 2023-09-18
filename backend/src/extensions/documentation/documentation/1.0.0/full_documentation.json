@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-09-14T15:27:40.888Z"
+    "x-generation-date": "2023-09-18T17:16:27.660Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2043,7 +2043,7 @@
                                 "attributes": {
                                   "type": "object",
                                   "properties": {
-                                    "label": {
+                                    "category": {
                                       "type": "string"
                                     },
                                     "slug": {
@@ -2934,7 +2934,7 @@
                                             "attributes": {
                                               "type": "object",
                                               "properties": {
-                                                "label": {
+                                                "category": {
                                                   "type": "string"
                                                 },
                                                 "slug": {
@@ -3633,7 +3633,7 @@
           "data": {
             "type": "object",
             "properties": {
-              "label": {
+              "category": {
                 "type": "string"
               },
               "slug": {
@@ -3706,7 +3706,7 @@
       "Category": {
         "type": "object",
         "properties": {
-          "label": {
+          "category": {
             "type": "string"
           },
           "slug": {
@@ -4552,7 +4552,7 @@
                                 "attributes": {
                                   "type": "object",
                                   "properties": {
-                                    "label": {
+                                    "category": {
                                       "type": "string"
                                     },
                                     "slug": {
@@ -10114,7 +10114,7 @@
                                               "attributes": {
                                                 "type": "object",
                                                 "properties": {
-                                                  "label": {
+                                                  "category": {
                                                     "type": "string"
                                                   },
                                                   "slug": {
@@ -11320,7 +11320,7 @@
                                 "attributes": {
                                   "type": "object",
                                   "properties": {
-                                    "label": {
+                                    "category": {
                                       "type": "string"
                                     },
                                     "slug": {
@@ -12605,7 +12605,7 @@
                                               "attributes": {
                                                 "type": "object",
                                                 "properties": {
-                                                  "label": {
+                                                  "category": {
                                                     "type": "string"
                                                   },
                                                   "slug": {
@@ -13519,7 +13519,7 @@
                                             "attributes": {
                                               "type": "object",
                                               "properties": {
-                                                "label": {
+                                                "category": {
                                                   "type": "string"
                                                 },
                                                 "slug": {
