@@ -17,7 +17,7 @@ export function ParsedHTML({
   id,
 }: ParsedHTMLProps) {
   return (
-    <div className={classNames('font-sans', className)} id={id}>
+    <div className={classNames('font-sans text-lg', className)} id={id}>
       {parse(children ?? '', {
         replace: replacer ?? defaultReplace,
       })}

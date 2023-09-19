@@ -7,6 +7,7 @@ import { Title } from '@/app/components/Title';
 import { PaginationControl } from '@/app/components/PaginationControl';
 import { Listing } from '@/app/components/Listing';
 import { PageLayout } from '@/app/components/PageLayout';
+import { DEFAULT_PAGE_SIZE } from '@/app/lib/constants';
 
 type Props = {
   params: {
@@ -22,11 +23,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogHomeRoute({ params }: Props) {
   const { page } = params;
-  const pageNum = parseInt(page);
-  console.log(pageNum);
+  const pageNum = parseInt(page ?? 1);
 
-  const { data: posts, meta } = await getBlogPosts(undefined, pageNum, 2);
+  const { data: posts, meta } = await getBlogPosts(
+    undefined,
+    pageNum,
+    DEFAULT_PAGE_SIZE,
+  );
   const { pageCount } = meta.pagination;
+
+  console.log(meta);
 
   const path = [
     {
@@ -47,7 +53,7 @@ export default async function BlogHomeRoute({ params }: Props) {
       <section>
         <Title>News</Title>
         <PaginationControl
-          path="/blogs"
+          path="/blog"
           currentPage={pageNum ?? 0}
           pageCount={pageCount}
         />
@@ -57,7 +63,7 @@ export default async function BlogHomeRoute({ params }: Props) {
           ))}
         </Listing>
         <PaginationControl
-          path="/blogs"
+          path="/blog"
           currentPage={pageNum ?? 0}
           pageCount={pageCount}
         />

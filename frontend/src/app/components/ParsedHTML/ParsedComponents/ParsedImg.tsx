@@ -1,5 +1,6 @@
 import { ParserProps } from '@/app/types';
 import Image from 'next/image';
+import { attributesToProps } from 'html-react-parser';
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? '';
 
@@ -7,7 +8,7 @@ export interface ParsedImgProps extends ParserProps {}
 
 export function ParsedImg(props: ParserProps) {
   const { src, alt, ...attribs } = props.attribs;
-  const fullSrc = `${STRAPI_URL}${src}`;
+  const fullSrc = src.substring(0, 4) === 'http' ? src : `${STRAPI_URL}${src}`;
 
   return (
     <Image
@@ -16,7 +17,6 @@ export function ParsedImg(props: ParserProps) {
       alt={alt}
       width={500}
       height={500}
-      {...attribs}
     />
   );
 }

@@ -9,7 +9,7 @@ export const FALLBACK_SEO = {
 // length, in characters, of post excerpts in listing.
 export const EXCERPT_SIZE = 310;
 
-export const DEFAULT_PAGE_SIZE = 2;
+export const DEFAULT_PAGE_SIZE = 10;
 export const WEEKNOTE_AUTHORS: string[] = [
   'bob',
   'liz',

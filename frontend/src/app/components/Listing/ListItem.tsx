@@ -20,8 +20,6 @@ export function ListItem<T extends ListableContentType<string | never>>({
 
   const href = `${basePath}/${slug}`;
 
-  console.log('🧢', href);
-
   return (
     <li
       key={slug}
@@ -36,7 +34,7 @@ export function ListItem<T extends ListableContentType<string | never>>({
           {title}
         </A>
       </div>
-      <div className="text-textSecondary dark:text-textSecondaryDark text-sm">
+      <div className="text-textSecondary dark:text-textSecondaryDark mb-5 text-sm">
         <span className="font-light italic">by </span>
         <span className="font-bold">
           {author?.data?.attributes.name ?? 'The WPRDC'}
@@ -46,7 +44,7 @@ export function ListItem<T extends ListableContentType<string | never>>({
           {new Date(publishedAt).toLocaleDateString('en-US')}
         </span>
       </div>
-      <div className="line-clamp-3">
+      <div className="my-4 line-clamp-3">
         <ParsedHTML replacer={makeReplacer(excerptReplacer)}>{text}</ParsedHTML>
       </div>
       <A variant="button" buttonSize="S" buttonStyle="primary" href={href}>

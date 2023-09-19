@@ -50,6 +50,7 @@ export const defaultReplacers: ReplacerRecord = {
   figcaption: ParsedFigcaption,
   img: ParsedImg,
   a: ParsedA,
+  span: ParsedSpan,
   p: ParsedP,
   h1: ParsedHeading,
   h2: ParsedHeading,

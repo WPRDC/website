@@ -8,14 +8,17 @@ export interface BylineProps {
 }
 
 export function Byline({ author, timestamp }: BylineProps) {
+  console.log('✍️', author);
   return (
     <div className="text-textSecondary dark:text-textSecondaryDark my-2">
       {!!author && (
         <>
-          {WEEKNOTE_AUTHORS.includes(author.attributes?.slug ?? '') && (
+          {WEEKNOTE_AUTHORS.includes(author.attributes?.slug ?? '') ? (
             <A href={`/team/${author.attributes.slug}`}>
               {author.attributes.name}
             </A>
+          ) : (
+            <span> {author.attributes.name}</span>
           )}
 
           <span> &mdash; </span>
