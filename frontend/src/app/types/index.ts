@@ -1,5 +1,5 @@
 import { ExtractNested, IAuthor, ICategory, ITag } from '@/app/types/models';
-import { Element } from 'html-react-parser';
+import { DOMNode, Element } from 'html-react-parser';
 import { JSX } from 'react/jsx-runtime';
 import IntrinsicElements = JSX.IntrinsicElements;
 
@@ -24,6 +24,7 @@ export interface StrapiResponse<
   meta: M;
 }
 
+export type ReplaceFn = (node: DOMNode) => JSX.Element | undefined;
 export type Replacer = (props: ParserProps) => JSX.Element;
 export type ReplacerRecord = Partial<Record<keyof IntrinsicElements, Replacer>>;
 
@@ -54,4 +55,5 @@ export interface ListableContentType<Populate extends string | never = never> {
 export interface ParserProps
   extends Pick<Element, 'name' | 'attribs' | 'type' | 'children'> {
   className?: string;
+  replacer?: ReplaceFn;
 }

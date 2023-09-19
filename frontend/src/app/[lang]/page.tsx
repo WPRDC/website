@@ -41,6 +41,7 @@ export default async function HomePage({
         <div className="mt-4 grid-cols-2">
           {buttons.map((button) => (
             <A
+              key={button.id}
               href={button.buttonURL ?? '#'}
               variant="button"
               buttonStyle={!!button.highlight ? 'primary' : 'default'}
@@ -55,7 +56,7 @@ export default async function HomePage({
       {/*Blurbs*/}
       <div className="border-text my-4 grid grid-cols-1 gap-x-8 gap-y-8 border-y-2 py-8 dark:border-gray-700 md:grid-cols-2 lg:grid-cols-3">
         {tiles.map((tile) => (
-          <Blurb {...tile} />
+          <Blurb key={tile.id} {...tile} />
         ))}
       </div>
 
@@ -70,6 +71,7 @@ export default async function HomePage({
           <div className="mx-auto grid w-fit grid-cols-3 gap-4 pb-4 pt-2">
             {partners.map((partner) => (
               <Image
+                key={partner.id}
                 src={
                   partner.partnerLogo?.data?.attributes.url
                     ? `${STRAPI_URL}${partner.partnerLogo?.data?.attributes.url}`
@@ -85,6 +87,7 @@ export default async function HomePage({
           <div className="mx-auto grid w-fit grid-cols-3 items-center gap-4 py-2 sm:grid-cols-4 lg:grid-cols-6">
             {otherPublishers.map((publisher) => (
               <Image
+                key={publisher.id}
                 src={
                   publisher.partnerLogo?.data?.attributes.url
                     ? `${STRAPI_URL}${publisher.partnerLogo?.data?.attributes.url}`

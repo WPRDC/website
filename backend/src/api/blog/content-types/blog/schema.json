@@ -53,6 +53,9 @@
         "preset": "rich"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "publishDate": {
+      "type": "date"
     }
   }
 }

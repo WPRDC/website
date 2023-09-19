@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { getContentBySlug } from '@/app/lib/data-fetchers';
-import { ContextBox } from '@/app/components/ContextBox';
 import { IPage } from '@/app/types';
 import { Title } from '@/app/components/Title';
 import { Subtitle } from '@/app/components/Subtitle';

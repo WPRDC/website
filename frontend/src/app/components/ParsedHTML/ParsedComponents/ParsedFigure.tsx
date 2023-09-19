@@ -7,6 +7,7 @@ export interface ParsedFigureProps extends ParserProps {}
 
 export function ParsedFigure(props: ParserProps) {
   const { style, ...attribs } = props.attribs;
+  const replacer = props.replacer ?? defaultReplace;
 
   return (
     <figure
@@ -16,7 +17,7 @@ export function ParsedFigure(props: ParserProps) {
         props.className,
       )}
     >
-      {domToReact(props.children, { replace: defaultReplace })}
+      {domToReact(props.children, { replace: replacer })}
     </figure>
   );
 }

@@ -16,6 +16,7 @@ import {
   ParsedImg,
   ParsedOL,
   ParsedP,
+  ParsedSpan,
   ParsedUL,
 } from './ParsedComponents';
 import classNames from 'classnames';
@@ -66,7 +67,16 @@ export const excerptReplacer: ReplacerRecord = {
   figure: () => <></>,
   figcaption: () => <></>,
   img: () => <></>,
-  a: ParsedA,
+  a: (props) => (
+    <ParsedSpan {...props} replacer={makeReplacer(excerptReplacer)}>
+      {props.children}
+    </ParsedSpan>
+  ),
+  span: (props) => (
+    <ParsedSpan {...props} replacer={makeReplacer(excerptReplacer)}>
+      {props.children}
+    </ParsedSpan>
+  ),
   p: ParsedP,
   h1: ParsedP,
   h2: ParsedP,

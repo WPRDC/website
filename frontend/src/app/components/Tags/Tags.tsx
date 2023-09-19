@@ -15,7 +15,7 @@ export function Tags({ tags, size = 'M' }: TagsProps) {
         'px-2.5 py-2': ['M', 'L'].includes(size),
       })}
     >
-      {!!tags && tags.map((tag) => <Tag tag={tag} size={size} />)}
+      {!!tags && tags.map((tag) => <Tag key={tag.id} tag={tag} size={size} />)}
     </ul>
   );
 }

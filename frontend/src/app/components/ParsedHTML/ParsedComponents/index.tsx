@@ -6,3 +6,4 @@ export * from './ParsedImg';
 export * from './ParsedP';
 export * from './ParsedOL';
 export * from './ParsedUL';
+export * from './ParsedSpan';

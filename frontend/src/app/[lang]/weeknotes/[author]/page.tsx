@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { getBlogPosts, getWeeknotes } from '@/app/lib/data-fetchers';
+import { getWeeknotes } from '@/app/lib/data-fetchers';
 import React from 'react';
-import { ListItem } from '@/app/components/Listing/ListItem';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';

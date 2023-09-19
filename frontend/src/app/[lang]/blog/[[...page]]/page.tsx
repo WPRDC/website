@@ -18,19 +18,12 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {};
-  //
-  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  // const metadata = page.data[0].attributes.seo;
-  //
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  // };
 }
 
 export default async function BlogHomeRoute({ params }: Props) {
   const { page } = params;
   const pageNum = parseInt(page);
+  console.log(pageNum);
 
   const { data: posts, meta } = await getBlogPosts(undefined, pageNum, 2);
   const { pageCount } = meta.pagination;
@@ -60,7 +53,7 @@ export default async function BlogHomeRoute({ params }: Props) {
         />
         <Listing>
           {posts.map((post) => (
-            <ListItem key={post.id} basePath="/blog" item={post} />
+            <ListItem key={post.id} basePath="/blog/post" item={post} />
           ))}
         </Listing>
         <PaginationControl

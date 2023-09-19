@@ -1,17 +1,11 @@
 import { Metadata } from 'next';
-import { getBlogPosts, getWeeknotes } from '@/app/lib/data-fetchers';
+import { getWeeknotes } from '@/app/lib/data-fetchers';
 import React from 'react';
-import { ListItem } from '@/app/components/Listing/ListItem';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { WEEKNOTE_AUTHORS } from '@/app/lib/constants';
-import { IWeeknote, ReplacerRecord } from '@/app/types';
+import { IWeeknote } from '@/app/types';
 import A from '@/app/components/A';
-import {
-  defaultReplacers,
-  makeReplacer,
-} from '@/app/components/ParsedHTML/lib';
-import { ParsedP } from '@/app/components/ParsedHTML/ParsedComponents';
 import { Title } from '@/app/components/Title';
 
 type Props = {
@@ -63,7 +57,7 @@ export default async function WeeknoteListingRoute({ params }: Props) {
       <nav>
         <ul className="inline-block space-x-3">
           {WEEKNOTE_AUTHORS.map((authorSlug) => (
-            <li className="inline-block">
+            <li key={authorSlug} className="inline-block">
               <A href={`#${authorSlug}`}>
                 <span className="capitalize">{authorSlug}</span>
               </A>
@@ -76,7 +70,7 @@ export default async function WeeknoteListingRoute({ params }: Props) {
         {mostRecentNotes
           .filter((note) => !!note)
           .map((weeknote) => (
-            <WeeknoteBlurb weeknote={weeknote} />
+            <WeeknoteBlurb key={weeknote?.id} weeknote={weeknote} />
           ))}
       </div>
     </div>

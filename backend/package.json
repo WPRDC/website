@@ -15,13 +15,13 @@
   },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.7",
-    "@strapi/plugin-documentation": "^4.12.5",
     "@strapi/plugin-i18n": "4.11.7",
     "@strapi/plugin-seo": "^1.9.2",
     "@strapi/plugin-users-permissions": "4.11.7",
     "@strapi/strapi": "4.11.7",
     "better-sqlite3": "8.5.0",
     "strapi-plugin-duplicate-button": "^1.1.13",
+    "strapi-plugin-import-export-entries": "^1.21.1",
     "strapi-plugin-populate-deep": "^3.0.0",
     "strapi-plugin-react-editorjs": "^2.0.2",
     "strapi-plugin-slugify": "^2.3.3"

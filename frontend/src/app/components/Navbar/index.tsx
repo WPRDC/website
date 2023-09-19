@@ -149,7 +149,7 @@ export default function Index({
                               !!subMenuItem.subItems.length && (
                                 <ul className="ml-4">
                                   {subMenuItem.subItems.map((subItem) => (
-                                    <li>
+                                    <li key={subItem.id}>
                                       <Link
                                         onClick={closeMenu}
                                         href={subItem.url ?? '#'}

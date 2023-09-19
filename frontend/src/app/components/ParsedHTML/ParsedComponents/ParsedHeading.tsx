@@ -10,6 +10,7 @@ export function ParsedHeading(props: ParsedHeadingProps) {
   const { style, ...attribs } = props.attribs;
   const Heading = props.name as HeadingTag;
   const idSlug = makeHeadingID(props.children);
+  const replacer = props.replacer ?? defaultReplace;
 
   return (
     <Heading
@@ -27,7 +28,7 @@ export function ParsedHeading(props: ParsedHeadingProps) {
         props.className,
       )}
     >
-      {domToReact(props.children, { replace: defaultReplace })}
+      {domToReact(props.children, { replace: replacer })}
     </Heading>
   );
 }

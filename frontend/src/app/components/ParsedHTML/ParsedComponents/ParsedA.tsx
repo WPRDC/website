@@ -8,9 +8,11 @@ export interface ParsedAProps extends ParserProps {}
 
 export function ParsedA(props: ParserProps) {
   const { style, ...attribs } = props.attribs;
+  const replacer = props.replacer ?? defaultReplace;
+
   return (
     <A {...attribs} className={classNames('font-sans', props.className)}>
-      {domToReact(props.children, { replace: defaultReplace })}
+      {domToReact(props.children, { replace: replacer })}
     </A>
   );
 }

@@ -1,9 +1,6 @@
-
-export type AvailableLocale = "en" | "es"
-
+export type AvailableLocale = 'en';
 
 export const i18n = {
-    defaultLocale: 'en',
-    locales: ['en', 'es'] as AvailableLocale[],
+  defaultLocale: 'en',
+  locales: ['en'] as AvailableLocale[],
 } as const;
-

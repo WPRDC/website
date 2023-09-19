@@ -20,6 +20,8 @@ export function ListItem<T extends ListableContentType<string | never>>({
 
   const href = `${basePath}/${slug}`;
 
+  console.log('🧢', href);
+
   return (
     <li
       key={slug}

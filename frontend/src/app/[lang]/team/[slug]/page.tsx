@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { getContentBySlug } from '@/app/lib/data-fetchers';
 import { IAuthor } from '@/app/types';
-import A from '@/app/components/A';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { PageLayout } from '@/app/components/PageLayout';
 import { Title } from '@/app/components/Title';

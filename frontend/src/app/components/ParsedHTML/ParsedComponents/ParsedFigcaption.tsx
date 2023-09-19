@@ -7,6 +7,7 @@ export interface ParsedFigcaptionProps extends ParserProps {}
 
 export function ParsedFigcaption(props: ParserProps) {
   const { style, ...attribs } = props.attribs;
+  const replacer = props.replacer ?? defaultReplace;
 
   return (
     <figcaption
@@ -16,7 +17,7 @@ export function ParsedFigcaption(props: ParserProps) {
         props.className,
       )}
     >
-      {domToReact(props.children, { replace: defaultReplace })}
+      {domToReact(props.children, { replace: replacer })}
     </figcaption>
   );
 }

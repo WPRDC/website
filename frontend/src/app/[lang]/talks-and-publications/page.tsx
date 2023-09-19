@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
-import { getArtifacts, getTools } from '@/app/lib/data-fetchers';
+import { getArtifacts } from '@/app/lib/data-fetchers';
 import React from 'react';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
-import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
 import { Card, CardGrid } from '@/app/components/Card';
 import { PageLayout } from '@/app/components/PageLayout';
@@ -49,8 +48,9 @@ export default async function ToolListingRoute({ params }: Props) {
       <Title>Talks and Publications</Title>
       {/* todo: set up leading content */}
       <CardGrid>
-        {artifacts.map(({ attributes: artifact }) => (
+        {artifacts.map(({ attributes: artifact, id }) => (
           <Card
+            key={id}
             href={`/talks-and-publications/${artifact.slug}`}
             title={artifact.title ?? ''}
             subtitle={artifact.subtitle}

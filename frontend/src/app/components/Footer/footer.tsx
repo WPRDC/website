@@ -43,7 +43,12 @@ export default function Footer({
               logo?.darkImage?.data?.attributes.url ?? '',
             );
             return (
-              <Logo darkModeURL={darkURL} lightModeURL={lightURL} width={200} />
+              <Logo
+                key={logo.id}
+                darkModeURL={darkURL}
+                lightModeURL={lightURL}
+                width={200}
+              />
             );
           })}
         </div>

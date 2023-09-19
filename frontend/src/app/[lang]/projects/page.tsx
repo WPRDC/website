@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { getProjects } from '@/app/lib/data-fetchers';
 import React from 'react';
 import { Breadcrumbs } from '@/app/components/Breadcrumbs';
-import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
 import { Card, CardGrid } from '@/app/components/Card';
 import { PageLayout } from '@/app/components/PageLayout';
@@ -49,8 +48,9 @@ export default async function ToolListingRoute({ params }: Props) {
       <Title>Projects</Title>
       {/* todo: setup leading content */}
       <CardGrid>
-        {projects.map(({ attributes: project }) => (
+        {projects.map(({ attributes: project, id }) => (
           <Card
+            key={id}
             href={`/projects/${project.slug}`}
             title={project.title ?? ''}
             subtitle={project.subtitle}

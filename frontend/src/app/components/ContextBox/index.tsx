@@ -70,7 +70,7 @@ export function ContextBox({
               {!!links &&
                 links.map((link) => (
                   <li
-                    key={link.url}
+                    key={link.id}
                     className="mb-1 block overflow-x-clip truncate whitespace-nowrap text-sm"
                   >
                     <span aria-hidden>

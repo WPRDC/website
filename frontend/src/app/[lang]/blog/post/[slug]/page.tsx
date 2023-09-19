@@ -6,7 +6,6 @@ import { IBlog } from '@/app/types';
 import { ParsedHTML } from '@/app/components/ParsedHTML';
 import { Title } from '@/app/components/Title';
 import { Subtitle } from '@/app/components/Subtitle';
-import { ContextBox } from '@/app/components/ContextBox';
 import { Byline } from '@/app/components/Byline';
 import { PageLayout } from '@/app/components/PageLayout';
 
@@ -45,14 +44,9 @@ export default async function BlogRoute({ params }: Props) {
       href: '/blog',
     },
     {
-      id: '3',
-      label: category,
-      href: `/blog/${category}`,
-    },
-    {
       id: '4',
       label: title ?? '',
-      href: `/blog/${category}/${slug}`,
+      href: `/blog/post/${slug}`,
     },
   ];
 
