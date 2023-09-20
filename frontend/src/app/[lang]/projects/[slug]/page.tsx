@@ -13,18 +13,27 @@ import { PrimaryLink } from '@/app/components/PrimaryLink';
 type Props = {
   params: {
     lang: string;
-    category: string;
     slug: string;
   };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {};
+  const { slug, lang } = params;
+  const { data: projects } = await getContentBySlug<ITool>(
+    '/projects',
+    slug,
+    lang,
+    '*',
+  );
+
+  return {
+    title: `WPRDC | ${projects[0].attributes.title}`,
+  };
 }
 
 export default async function ProjectRoute({ params }: Props) {
-  const { category, slug, lang } = params;
-  const { data: tools } = await getContentBySlug<ITool>(
+  const { slug, lang } = params;
+  const { data: projects } = await getContentBySlug<ITool>(
     '/projects',
     slug,
     lang,
@@ -33,7 +42,7 @@ export default async function ProjectRoute({ params }: Props) {
 
   // todo: handle 404 if not posts
   const { title, subtitle, description, url, screenshots, relatedPages } =
-    tools[0].attributes;
+    projects[0].attributes;
   const path: BreadcrumbItem[] = [
     {
       id: '1',
@@ -42,13 +51,13 @@ export default async function ProjectRoute({ params }: Props) {
     },
     {
       id: '2',
-      label: 'Tools',
-      href: '/tools',
+      label: 'Projects',
+      href: '/projects',
     },
     {
       id: '3',
       label: title ?? '',
-      href: '/tools',
+      href: '#',
     },
   ];
 

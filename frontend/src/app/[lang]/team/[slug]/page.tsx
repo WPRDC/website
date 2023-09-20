@@ -14,20 +14,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await getContentBySlug<IAuthor>(
-    '/authors',
-    params.slug,
-    params.lang,
-  );
-  return {};
-  //
-  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  // const metadata = page.data[0].attributes.seo;
-  //
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  // };
+  return {
+    title: 'WPRDC | Team',
+  };
 }
 
 export default async function PageRoute({ params }: Props) {

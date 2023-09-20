@@ -12,17 +12,26 @@ import { PageLayout } from '@/app/components/PageLayout';
 type Props = {
   params: {
     lang: string;
-    category: string;
     slug: string;
   };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {};
+  const { slug, lang } = params;
+  const { data: posts } = await getContentBySlug<IBlog>(
+    '/blogs',
+    slug,
+    lang,
+    '*',
+  );
+
+  return {
+    title: `WPRDC | ${posts[0].attributes.title}`,
+  };
 }
 
 export default async function BlogRoute({ params }: Props) {
-  const { category, slug, lang } = params;
+  const { slug, lang } = params;
   const { data: posts } = await getContentBySlug<IBlog>(
     '/blogs',
     slug,

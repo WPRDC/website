@@ -18,12 +18,15 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await getContentBySlug<IPage>(
-    '/pages',
+  const artifact = await getContentBySlug<IArtifact>(
+    '/artifacts',
     params.slug,
     params.lang,
+    '*',
   );
-  return {};
+  return {
+    title: `WPRDC | ${artifact.data[0].attributes.title}`,
+  };
 }
 
 export default async function ArtifactsRoute({ params }: Props) {

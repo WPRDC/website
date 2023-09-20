@@ -27,19 +27,24 @@ export function PageLayout({
     return false;
   }
 
+  const hasContext = hasContextContent(contextBoxProps);
+
   return (
-    <div className="container relative mx-auto w-screen items-start px-4 lg:flex lg:max-w-5xl lg:space-x-8 xl:max-w-7xl">
+    <div
+      className={classNames(
+        'container relative mx-auto w-screen items-start px-4 lg:flex lg:space-x-8 ',
+        hasContext ? 'lg:max-w-5xl xl:max-w-7xl' : 'lg:max-w-3xl xl:max-w-5xl',
+      )}
+    >
       <Content
         className={classNames(
           '',
-          hasContextContent(contextBoxProps)
-            ? 'w-full lg:w-2/3 xl:w-3/4'
-            : 'w-full',
+          hasContext ? 'w-full lg:w-2/3 xl:w-3/4' : 'w-full',
         )}
       >
         {children}
       </Content>
-      {hasContextContent(contextBoxProps) && (
+      {hasContext && (
         <div className="mt-8 w-full lg:mt-12 lg:block lg:w-1/3 xl:w-1/4">
           <ContextBox {...contextBoxProps} />
         </div>

@@ -121,7 +121,7 @@ export default function Index({
                         : 'hidden',
                     )}
                   >
-                    <div className="w-full pb-2 lg:mx-auto lg:flex lg:max-w-5xl">
+                    <div className="w-full py-2 lg:mx-auto lg:flex lg:max-w-5xl">
                       <div className="w-full lg:w-5/12">
                         {menuItem.attributes.subMenu?.map((subMenuItem) => (
                           <li
@@ -167,7 +167,7 @@ export default function Index({
                           </li>
                         ))}
                       </div>
-                      <div className="hidden lg:w-7/12">
+                      <div className="hidden lg:ml-4 lg:block lg:w-7/12">
                         {!!currentMenuItem && (
                           <ParsedHTML>
                             {currentDescription ??

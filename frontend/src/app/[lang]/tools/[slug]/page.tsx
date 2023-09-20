@@ -13,18 +13,26 @@ import { ScreenshotGrid } from '@/app/components/ScreenshotGrid';
 type Props = {
   params: {
     lang: string;
-    category: string;
     slug: string;
   };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {};
+  const { slug, lang } = params;
+  const { data: tools } = await getContentBySlug<IProject>(
+    '/tools',
+    slug,
+    lang,
+    '*',
+  );
+  return {
+    title: `WPRDC | ${tools[0].attributes.title}`,
+  };
 }
 
 export default async function BlogRoute({ params }: Props) {
-  const { category, slug, lang } = params;
-  const { data: projects } = await getContentBySlug<IProject>(
+  const { slug, lang } = params;
+  const { data: tools } = await getContentBySlug<IProject>(
     '/tools',
     slug,
     lang,
@@ -33,7 +41,7 @@ export default async function BlogRoute({ params }: Props) {
 
   // todo: handle 404 if not posts
   const { title, subtitle, description, url, githubURL, screenshots } =
-    projects[0].attributes;
+    tools[0].attributes;
   const path: BreadcrumbItem[] = [
     {
       id: '1',
@@ -42,8 +50,8 @@ export default async function BlogRoute({ params }: Props) {
     },
     {
       id: '2',
-      label: 'Projects',
-      href: '/projects',
+      label: 'Tools',
+      href: '/tools',
     },
     {
       id: '3',

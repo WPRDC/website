@@ -18,7 +18,11 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {};
+  return {
+    title: 'WPRDC | Blog',
+    description:
+      'News and updates from the folks at the Western PA Regional Data Center',
+  };
 }
 
 export default async function BlogHomeRoute({ params }: Props) {

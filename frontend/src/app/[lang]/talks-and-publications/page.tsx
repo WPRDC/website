@@ -13,15 +13,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {};
-  //
-  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  // const metadata = page.data[0].attributes.seo;
-  //
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  // };
+  return {
+    title: 'WPRDC | Talks and Publications',
+  };
 }
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? '';
