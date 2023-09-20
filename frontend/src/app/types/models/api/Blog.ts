@@ -19,6 +19,7 @@ export interface IBlog<Populate extends string | never = never> {
       subtitle: string | null;
       excerpt: string | null;
       article: string | null;
+      publishDate: string | null;
       createdAt: string;
       updatedAt: string;
       publishedAt: string;

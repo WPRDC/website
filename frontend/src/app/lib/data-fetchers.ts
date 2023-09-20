@@ -116,7 +116,7 @@ export async function getBlogPosts(
   };
 
   const queryParams = {
-    sort: { createdAt: 'desc' },
+    sort: { publishDate: 'desc' },
     filters,
     pagination,
     populate: blogPostFields,

@@ -13,8 +13,16 @@ export function ListItem<T extends ListableContentType<string | never>>({
   item,
   basePath = '',
 }: ListItemProps<T>) {
-  const { slug, title, publishedAt, excerpt, article, author, category } =
-    item.attributes;
+  const {
+    slug,
+    title,
+    publishedAt,
+    excerpt,
+    article,
+    publishDate,
+    author,
+    category,
+  } = item.attributes;
 
   const text = excerpt || article || '';
 
@@ -41,7 +49,7 @@ export function ListItem<T extends ListableContentType<string | never>>({
         </span>
         <span className="font-light italic"> on </span>
         <span className="font-bold">
-          {new Date(publishedAt).toLocaleDateString('en-US')}
+          {new Date(publishDate ?? '').toLocaleDateString('en-US')}
         </span>
       </div>
       <div className="my-4 line-clamp-3">

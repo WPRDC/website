@@ -7,7 +7,7 @@ export interface ICategory<Populate extends string | never = never> {
   id: number;
   attributes: RequiredBy<
     {
-      label: string | null;
+      category: string | null;
       slug: string | null;
       blogs?: { data: IBlog<ExtractNested<Populate, "blogs">>[] };
       createdAt: string;

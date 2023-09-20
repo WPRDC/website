@@ -35,6 +35,7 @@ export interface ListableContentType<Populate extends string | never = never> {
   attributes: {
     slug: string | null;
     title: string | null;
+    publishDate: string | null;
     author?: {
       data: IAuthor<ExtractNested<Populate, 'author'>> | null;
     };

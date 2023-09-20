@@ -56,7 +56,9 @@ export function ContextBox({
               {'On this page'}
             </div>
             <ol className="px-1.5 text-sm">
-              <ParsedHTML replacer={tocReplacer}>{contents}</ParsedHTML>
+              <ParsedHTML replacer={tocReplacer} className="text-sm">
+                {contents}
+              </ParsedHTML>
             </ol>
           </div>
         )}

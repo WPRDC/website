@@ -13,7 +13,7 @@ export function ParsedFigcaption(props: ParserProps) {
     <figcaption
       {...attributesToProps(attribs)}
       className={classNames(
-        'text-textSecondary dark:text-textSecondaryDark max-w-2xl py-0.5 text-center font-mono italic',
+        'text-textSecondary dark:text-textSecondaryDark max-w-2xl py-0.5 text-center font-mono text-sm italic',
         props.className,
       )}
     >
