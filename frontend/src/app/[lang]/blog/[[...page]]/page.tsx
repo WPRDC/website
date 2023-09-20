@@ -36,8 +36,6 @@ export default async function BlogHomeRoute({ params }: Props) {
   );
   const { pageCount } = meta.pagination;
 
-  console.log(meta);
-
   const path = [
     {
       id: '1',

@@ -8,7 +8,6 @@ export interface BylineProps {
 }
 
 export function Byline({ author, timestamp }: BylineProps) {
-  console.log('✍️', author);
   return (
     <div className="text-textSecondary dark:text-textSecondaryDark my-2">
       {!!author && (

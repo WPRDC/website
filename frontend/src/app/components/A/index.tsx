@@ -30,7 +30,6 @@ export default function A(props: AProps) {
   } = props;
 
   const Component: 'a' | typeof Link = external ? 'a' : Link;
-  console.log(external, shallow, replace);
   return (
     <Component
       href={href}
