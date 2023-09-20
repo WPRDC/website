@@ -28,11 +28,13 @@ export function PageLayout({
   }
 
   return (
-    <div className="container relative mx-auto w-full items-start px-4 lg:flex lg:max-w-5xl lg:space-x-8 xl:max-w-7xl">
+    <div className="container relative mx-auto w-screen items-start border border-pink-500 px-4 lg:flex lg:max-w-5xl lg:space-x-8 xl:max-w-7xl">
       <Content
         className={classNames(
           '',
-          !!contextBoxProps ? 'w-full lg:w-2/3 xl:w-3/4' : 'w-full',
+          hasContextContent(contextBoxProps)
+            ? 'w-full lg:w-2/3 xl:w-3/4'
+            : 'w-full',
         )}
       >
         {children}

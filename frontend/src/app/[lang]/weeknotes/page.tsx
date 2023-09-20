@@ -7,6 +7,7 @@ import { WEEKNOTE_AUTHORS } from '@/app/lib/constants';
 import { IWeeknote } from '@/app/types';
 import A from '@/app/components/A';
 import { Title } from '@/app/components/Title';
+import { PageLayout } from '@/app/components/PageLayout';
 
 type Props = {
   params: {
@@ -49,7 +50,7 @@ export default async function WeeknoteListingRoute({ params }: Props) {
   ];
 
   return (
-    <div className="container items-start px-4 md:mx-auto lg:max-w-5xl">
+    <PageLayout>
       <Breadcrumbs path={path} />
       <Title>Weeknotes</Title>
       {/* todo: setup leading content */}
@@ -73,7 +74,7 @@ export default async function WeeknoteListingRoute({ params }: Props) {
             <WeeknoteBlurb key={weeknote?.id} weeknote={weeknote} />
           ))}
       </div>
-    </div>
+    </PageLayout>
   );
 }
 
