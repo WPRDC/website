@@ -20,15 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     params.slug,
     params.lang,
   );
-  return {};
-  //
-  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  // const metadata = page.data[0].attributes.seo;
-  //
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  // };
+  return {
+    title: `WPRDC | ${page.data[0].attributes.title}`,
+  };
 }
 
 export default async function PageRoute({ params }: Props) {

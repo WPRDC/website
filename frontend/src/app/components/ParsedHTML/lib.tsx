@@ -131,7 +131,9 @@ export const tocReplacer = (domNode: DOMNode) => {
             'ml-5': tagName === 'h6',
           })}
         >
-          <A href={`#${idSlug}`}>{domToReact(domNode.children)}</A>
+          <A href={`#${idSlug}`} replace={true} shallow={true}>
+            {domToReact(domNode.children)}
+          </A>
         </li>
       );
     }

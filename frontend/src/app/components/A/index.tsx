@@ -25,15 +25,19 @@ export default function A(props: AProps) {
     newTab = false,
     external = false,
     className,
+    shallow,
+    replace,
   } = props;
 
   const Component: 'a' | typeof Link = external ? 'a' : Link;
-
+  console.log(external, shallow, replace);
   return (
     <Component
       href={href}
       target={newTab ? '_blank' : ''}
       rel="noreferrer"
+      shallow={shallow}
+      replace={replace}
       className={
         variant !== 'unstyled'
           ? classNames(
