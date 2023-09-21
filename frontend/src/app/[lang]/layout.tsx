@@ -8,6 +8,7 @@ import Navbar from '@/app/components/Navbar';
 import { FALLBACK_SEO } from '@/app/lib/constants';
 import { getGlobal, getMainMenu } from '@/app/lib/data-fetchers';
 import { jetbrainsMono, publicSans } from '@/app/[lang]/fonts';
+import Script from 'next/script';
 
 /** Special Next.js function for assigning metadata to pages under this layout */
 export async function generateMetadata(): Promise<Metadata> {
@@ -64,6 +65,21 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
+      <Script>
+        {`
+          var _paq = window._paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://analytics.wprdc.org/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '2']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+      `}
+      </Script>
       <body
         className={`${jetbrainsMono.variable} ${publicSans.variable} flex min-h-screen flex-col`}
       >

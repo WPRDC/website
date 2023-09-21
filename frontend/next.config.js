@@ -1,18 +1,20 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   images: {
     unoptimized: true,
+    redirects: [
+      {
+        source: '/news',
+        destination: '/blog',
+        permanent: 'true',
+      },
+    ],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.tessercat.net',
+        hostname: 'api.wprdc.org',
         port: '',
         pathname: '/uploads/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
       },
     ],
   },
