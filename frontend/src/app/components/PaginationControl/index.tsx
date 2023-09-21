@@ -13,6 +13,8 @@ export function PaginationControl({
 }: PaginationControlProps) {
   const pages = Array.from(Array(pageCount + 1).keys()).filter((n) => n !== 0);
 
+  if (pageCount < 2) return <div className="py-4"></div>;
+
   return (
     <nav className="my-4 text-2xl">
       {currentPage > 1 ? (

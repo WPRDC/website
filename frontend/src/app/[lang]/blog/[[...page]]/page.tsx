@@ -29,11 +29,7 @@ export default async function BlogHomeRoute({ params }: Props) {
   const { page } = params;
   const pageNum = parseInt(page ?? 1);
 
-  const { data: posts, meta } = await getBlogPosts(
-    undefined,
-    pageNum,
-    DEFAULT_PAGE_SIZE,
-  );
+  const { data: posts, meta } = await getBlogPosts(pageNum, DEFAULT_PAGE_SIZE);
   const { pageCount } = meta.pagination;
 
   const path = [
@@ -53,7 +49,7 @@ export default async function BlogHomeRoute({ params }: Props) {
     <PageLayout>
       <Breadcrumbs path={path} />
       <section>
-        <Title>News</Title>
+        <Title>Blog</Title>
         <PaginationControl
           path="/blog"
           currentPage={pageNum ?? 0}

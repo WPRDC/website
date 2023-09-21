@@ -117,7 +117,7 @@ export default function Index({
                     className={classNames(
                       'border-textSecondary ml-4 bg-white dark:bg-black lg:ml-0 lg:w-full lg:border-b',
                       currentMenuItem?.id === menuItem.id
-                        ? 'lg:absolute lg:left-0 lg:m-1'
+                        ? 'lg:absolute lg:left-0 lg:m-1 lg:pt-1'
                         : 'hidden',
                     )}
                   >

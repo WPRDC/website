@@ -29,16 +29,15 @@ export default function SearchBar(props: SearchBarProps) {
       <form
         method="GET"
         action={SEARCH_URL}
-        className="space-x-2 space-y-4 lg:flex"
+        className="space-x-0 space-y-4 md:flex md:items-stretch md:space-x-2 md:space-y-0"
       >
-        <label {...labelProps}>{label}</label>
-        <div className="border-primary focus:border-primary flex w-full items-center border-4 outline-0 dark:text-white lg:max-w-lg">
+        <div className="dark:border-primary focus:border-primary outline-primary flex w-full items-center border-4 border-black outline dark:text-white dark:outline-0 lg:max-w-lg">
           <FaSearch className="mx-2 text-3xl" role="presentation" />
           <input
             {...inputProps}
             name="q"
             ref={ref}
-            className="placeholder:text-textSecondary dark:placehoder:text-textSecondaryDark flex-grow border-0 bg-inherit px-2 py-2 text-xl outline-0"
+            className="flex-grow border-0 bg-inherit px-2 py-2 text-xl outline-0 placeholder:text-slate-400"
           />
           {state.value !== '' && (
             <Button {...clearButtonProps}>

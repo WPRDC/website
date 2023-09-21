@@ -5,6 +5,7 @@ import A from '@/app/components/A';
 import { Blurb } from '@/app/components/Blurb';
 import { STRAPI_URL } from '@/app/lib/constants';
 import Image from 'next/image';
+import { PageLayout } from '@/app/components/PageLayout';
 
 export default async function HomePage({
   params,
@@ -22,7 +23,7 @@ export default async function HomePage({
   const otherPublishers = publishers?.publishers ?? [];
 
   return (
-    <div className="mx-4 max-w-4xl lg:mx-auto">
+    <PageLayout>
       {/* Big Search*/}
       <div className="mt-2 py-4 md:mt-6 lg:mt-4">
         <h2
@@ -77,8 +78,8 @@ export default async function HomePage({
                     ? `${STRAPI_URL}${partner.partnerLogo?.data?.attributes.url}`
                     : ''
                 }
-                width={140}
-                height={140}
+                width={180}
+                height={180}
                 alt={partner.partnerName ?? ''}
               />
             ))}
@@ -93,8 +94,8 @@ export default async function HomePage({
                     ? `${STRAPI_URL}${publisher.partnerLogo?.data?.attributes.url}`
                     : ''
                 }
-                width={120}
-                height={120}
+                width={140}
+                height={140}
                 alt={publisher.partnerName ?? ''}
               />
             ))}
@@ -117,6 +118,6 @@ export default async function HomePage({
           </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }

@@ -27,6 +27,18 @@ export async function getContentBySlug<T>(
   return await fetchAPI<T[]>(path, queryParams, options);
 }
 
+export async function getContentByID<T extends object>(
+  path: string,
+  id: string,
+  lang: string,
+  populate?: string,
+) {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const queryParams = { locale: lang, populate };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  return await fetchAPI<T>(`${path}/${id}`, queryParams, options);
+}
+
 export async function requestData<T extends object | object[]>(
   path: string,
   queryParams: {
@@ -98,18 +110,9 @@ export async function getHomePage(): Promise<
 const blogPostFields: string[] | string = '*';
 
 export async function getBlogPosts(
-  category?: string,
   page: number = 1,
   pageSize: number = DEFAULT_PAGE_SIZE,
 ): Promise<StrapiResponse<IBlog<(typeof blogPostFields)[number]>[]>> {
-  const filters = category
-    ? {
-        category: {
-          slug: category,
-        },
-      }
-    : undefined;
-
   const pagination = {
     page,
     pageSize,
@@ -117,7 +120,6 @@ export async function getBlogPosts(
 
   const queryParams = {
     sort: { publishDate: 'desc' },
-    filters,
     pagination,
     populate: blogPostFields,
   };
@@ -131,20 +133,18 @@ export async function getBlogPosts(
 const weeknoteFields: string[] | string = '*';
 
 export async function getWeeknotes(
-  author?: string,
+  page: number = 1,
+  pageSize: number = DEFAULT_PAGE_SIZE,
 ): Promise<StrapiResponse<IWeeknote<(typeof weeknoteFields)[number]>[]>> {
-  const filters = author
-    ? {
-        author: {
-          slug: author,
-        },
-      }
-    : undefined;
+  const pagination = {
+    page,
+    pageSize,
+  };
 
   const queryParams = {
-    sort: { createdAt: 'desc' },
-    filters,
-    populate: weeknoteFields,
+    sort: { publishDate: 'desc' },
+    pagination,
+    populate: blogPostFields,
   };
 
   return requestData<IWeeknote<(typeof weeknoteFields)[number]>[]>(

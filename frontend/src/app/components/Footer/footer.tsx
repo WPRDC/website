@@ -19,7 +19,7 @@ export default function Footer({
   affiliateLogos = [],
 }: FooterProps) {
   return (
-    <div className="border-textSecondary border-t-2 bg-black px-6 pb-16 pt-10">
+    <div className="border-textSecondary border-t-2 bg-white px-6 pb-16 pt-10 dark:bg-black">
       <div className="container mx-auto max-w-screen-xl space-y-4 lg:flex ">
         <div>
           <Logo lightModeURL={logoURL} darkModeURL={darkLogoURL} />

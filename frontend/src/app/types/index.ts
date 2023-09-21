@@ -32,10 +32,11 @@ export type Size = 'S' | 'M' | 'L';
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export interface ListableContentType<Populate extends string | never = never> {
+  id: number;
   attributes: {
-    slug: string | null;
-    title: string | null;
-    publishDate: string | null;
+    slug?: string | null;
+    title?: string | null;
+    publishDate?: string | null;
     author?: {
       data: IAuthor<ExtractNested<Populate, 'author'>> | null;
     };
