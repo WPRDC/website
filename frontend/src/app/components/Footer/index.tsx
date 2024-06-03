@@ -1,5 +1,4 @@
 import { IElementsLink, IElementsLogo } from '@/app/types';
-import Image from 'next/image';
 import A from '@/app/components/A';
 import Logo from '@/app/components/Navbar/Logo';
 import React from 'react';
@@ -34,7 +33,8 @@ export default function Footer({
           </div>
         </div>
         <div className="flex-grow"></div>
-        <div>
+
+        <div className="space-x-2">
           {affiliateLogos.map((logo) => {
             const darkURL = getStrapiMedia(
               logo?.image?.data?.attributes.url ?? '',
@@ -47,10 +47,37 @@ export default function Footer({
                 key={logo.id}
                 darkModeURL={darkURL}
                 lightModeURL={lightURL}
+                height={100}
                 width={200}
               />
             );
           })}
+          <a href="https://aws.amazon.com/what-is-cloud-computing">
+            <img
+              className="hidden w-40 dark:block"
+              src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
+              alt="Powered by AWS Cloud Computing"
+            />
+            <img
+              className="block w-40 dark:hidden"
+              src="https://d0.awsstatic.com/logos/powered-by-aws.png"
+              alt="Powered by AWS Cloud Computing"
+            />
+          </a>
+          <div className="max-w-sm pt-1.5 text-xs">
+            Support for Health Equity datasets and tools provided by{' '}
+            <A external href="https://aws.amazon.com/">
+              Amazon Web Services (AWS)
+            </A>{' '}
+            through their{' '}
+            <A
+              href="https://aws.amazon.com/government-education/nonprofits/global-social-impact/health-equity/"
+              external
+            >
+              Health Equity Initiative
+            </A>
+            .
+          </div>
         </div>
       </div>
     </div>

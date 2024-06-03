@@ -15,7 +15,7 @@ export default function Logo({
   ...imageProps
 }: LogoProps) {
   const width = imageProps.width ?? 384;
-  const height = 46;
+  const height = imageProps.height ?? 46;
 
   return (
     <Link href="/" aria-label="Back to homepage">
@@ -26,6 +26,7 @@ export default function Logo({
           width={width}
           height={height}
           className="block dark:hidden"
+          style={{ width: 'auto', height: height }}
         />
       }
       {
@@ -35,6 +36,7 @@ export default function Logo({
           width={width}
           height={height}
           className="hidden dark:block"
+          style={{ width: 'auto', height: height }}
         />
       }
     </Link>

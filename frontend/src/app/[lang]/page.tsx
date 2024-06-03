@@ -80,6 +80,7 @@ export default async function HomePage({
                 }
                 width={180}
                 height={180}
+                style={{ width: '180px', height: 'auto' }}
                 alt={partner.partnerName ?? ''}
               />
             ))}
@@ -96,6 +97,7 @@ export default async function HomePage({
                 }
                 width={140}
                 height={140}
+                style={{ width: 'auto', height: 'auto' }}
                 alt={publisher.partnerName ?? ''}
               />
             ))}

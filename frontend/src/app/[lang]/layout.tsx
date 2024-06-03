@@ -3,7 +3,7 @@ import '../globals.css';
 import { getStrapiMedia, getStrapiURL } from '@/app/lib/api-helpers';
 
 import { i18n } from '@/app/lib/i18n-config';
-import Footer from '@/app/components/Footer/footer';
+import Footer from '@/app/components/Footer';
 import Navbar from '@/app/components/Navbar';
 import { FALLBACK_SEO } from '@/app/lib/constants';
 import { getGlobal, getMainMenu } from '@/app/lib/data-fetchers';
